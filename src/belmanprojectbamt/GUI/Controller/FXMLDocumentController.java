@@ -7,32 +7,80 @@ package belmanprojectbamt.GUI.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 
 /**
+ * FXML Controller class
  *
- * @author Theis
+ * @author asvor
  */
-public class FXMLDocumentController implements Initializable
-{
-    
+public class FXMLDocumentController implements Initializable {
+
     @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event)
-    {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-    
+    private FlowPane flowPane;
+    private AnchorPane ancPostIt;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
+    public void initialize(URL url, ResourceBundle rb) 
     {
-        // TODO
+        ancPostIt = new AnchorPane();
+        createAnchorPane();
+        createAnchorPane();
+        createLabels();
+        setProgressBar();
     }    
     
+    public void setProgressBar()
+    {
+        ProgressBar prgBarDate = new ProgressBar();
+        ProgressBar prgBarActual = new ProgressBar();
+        
+        prgBarActual.setLayoutX(14);
+        prgBarActual.setLayoutY(375);
+        prgBarActual.setProgress(0.6);
+        prgBarActual.setPrefSize(508, 24);
+        
+        prgBarDate.setLayoutX(14);
+        prgBarDate.setLayoutY(340);
+        prgBarDate.setProgress(0.4);
+        prgBarDate.setPrefSize(508, 24);
+        
+        ancPostIt.getChildren().addAll(prgBarDate, prgBarActual);
+    }
+    
+    public void createLabels()
+    {
+        Label customerLabel = new Label("Customer:");
+        Label orderLabel = new Label("Order Number:");
+        
+        orderLabel.setLayoutX(14);
+        orderLabel.setLayoutY(14);
+        orderLabel.getStyleClass().add("label-header");
+        
+        customerLabel.setLayoutX(14);
+        customerLabel.setLayoutY(200);
+
+        customerLabel.getStyleClass().add("label");
+        
+        ancPostIt.getChildren().addAll(customerLabel, orderLabel);
+    }
+    
+    public void createAnchorPane()
+    {
+        ancPostIt.setPrefSize(530, 410);
+        ancPostIt.setLayoutX(530);
+        ancPostIt.setLayoutY(0);
+        ancPostIt.setStyle("-fx-background-color:#004686");
+        
+        flowPane.getChildren().add(ancPostIt);
+    }
 }
