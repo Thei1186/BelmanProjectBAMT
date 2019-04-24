@@ -12,9 +12,20 @@ package belmanprojectbamt.GUI.Model;
 public class BelmanModel
 {
 
+    private static BelmanModel bModel;
+
     private BelmanModel()
     {
-        
+        bModel = null;
     }
-    
+
+    public static BelmanModel getInstance()
+    {
+        if (bModel == null)
+        {
+            bModel = new BelmanModel();
+        }
+        return bModel;
+    }
+
 }
