@@ -10,7 +10,7 @@ and open the template in the editor.
 
 .label
 {
-    -fx-font-size: 12px;
+    -fx-font-size: 15px;
     -fx-text-fill: white;
     
 }
@@ -19,4 +19,10 @@ and open the template in the editor.
     -fx-font-size: 24px;
     -fx-text-fill: white;
     -fx-font-weight: bold; 
+}
+
+.anchorpane
+{
+    -fx-padding: 10px;
+    -fx-background-color: #004686;
 }

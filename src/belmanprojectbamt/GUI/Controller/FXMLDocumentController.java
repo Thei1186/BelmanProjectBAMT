@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
@@ -34,9 +35,9 @@ public class FXMLDocumentController implements Initializable {
     {
         ancPostIt = new AnchorPane();
         createAnchorPane();
-        createAnchorPane();
         createLabels();
         setProgressBar();
+        createComboBox();
     }    
     
     public void setProgressBar()
@@ -63,7 +64,7 @@ public class FXMLDocumentController implements Initializable {
         Label orderLabel = new Label("Order Number:");
         
         orderLabel.setLayoutX(14);
-        orderLabel.setLayoutY(14);
+        orderLabel.setLayoutY(100);
         orderLabel.getStyleClass().add("label-header");
         
         customerLabel.setLayoutX(14);
@@ -77,10 +78,21 @@ public class FXMLDocumentController implements Initializable {
     public void createAnchorPane()
     {
         ancPostIt.setPrefSize(530, 410);
-        ancPostIt.setLayoutX(530);
-        ancPostIt.setLayoutY(0);
-        ancPostIt.setStyle("-fx-background-color:#004686");
+        ancPostIt.getStyleClass().add("anchorpane");
         
         flowPane.getChildren().add(ancPostIt);
+    }
+    
+    public void createComboBox()
+    {
+        ComboBox comboDept = new ComboBox();
+        
+        comboDept.setLayoutX(310);
+        comboDept.setPromptText("Departments");
+        comboDept.setLayoutY(14);
+        comboDept.setPrefSize(200, 15);
+        
+        ancPostIt.getChildren().add(comboDept);
+        
     }
 }
