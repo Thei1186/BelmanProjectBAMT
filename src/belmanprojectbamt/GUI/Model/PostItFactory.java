@@ -5,6 +5,7 @@
  */
 package belmanprojectbamt.GUI.Model;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -31,6 +32,7 @@ public class PostItFactory
         createAnchorPane();
         createLabels();
         createComboBox();
+        createButton();
        
         return ancPostIt;
     }
@@ -41,12 +43,12 @@ public class PostItFactory
         ProgressBar prgBarActual = new ProgressBar();
         
         prgBarActual.setLayoutX(14);
-        prgBarActual.setLayoutY(375);
+        prgBarActual.setLayoutY(310);
         prgBarActual.setProgress(0.6);
         prgBarActual.setPrefSize(508, 24);
         
         prgBarDate.setLayoutX(14);
-        prgBarDate.setLayoutY(340);
+        prgBarDate.setLayoutY(250);
         prgBarDate.setProgress(0.4);
         prgBarDate.setPrefSize(508, 24);
         
@@ -57,17 +59,36 @@ public class PostItFactory
     {
         Label customerLabel = new Label("Customer:");
         Label orderLabel = new Label("Order Number:");
-        
-        orderLabel.setLayoutX(14);
-        orderLabel.setLayoutY(100);
-        orderLabel.getStyleClass().add("label-header");
+        Label delDatelabel = new Label("Delivery Date:");
+        Label startDatelabel = new Label("Start Date:");
+        Label endDatelabel = new Label("End Date:");
+        Label actualTimelabel = new Label("Actual Time:");
         
         customerLabel.setLayoutX(14);
-        customerLabel.setLayoutY(200);
-
+        customerLabel.setLayoutY(150);
         customerLabel.getStyleClass().add("label");
         
-        ancPostIt.getChildren().addAll(customerLabel, orderLabel);
+        orderLabel.setLayoutX(14);
+        orderLabel.setLayoutY(85);
+        orderLabel.getStyleClass().add("label-header");
+        
+        delDatelabel.setLayoutX(14);
+        delDatelabel.setLayoutY(180);
+        delDatelabel.getStyleClass().add("label");
+        
+        startDatelabel.setLayoutX(14);
+        startDatelabel.setLayoutY(230);
+        startDatelabel.getStyleClass().add("label");
+        
+        endDatelabel.setLayoutX(450);
+        endDatelabel.setLayoutY(230);
+        endDatelabel.getStyleClass().add("label");
+        
+        actualTimelabel.setLayoutX(14);
+        actualTimelabel.setLayoutY(290);
+        actualTimelabel.getStyleClass().add("label");
+        
+        ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel, actualTimelabel);
     }
     
     private void createAnchorPane()
@@ -89,5 +110,17 @@ public class PostItFactory
         
         ancPostIt.getChildren().add(comboDept);
         
+    }
+    
+    private void createButton()
+    {
+        Button doneButton = new Button();
+        
+        doneButton.setText("Done");
+        doneButton.setLayoutX(440);
+        doneButton.setLayoutY(360);
+        doneButton.setPrefSize(80, 20);
+        
+        ancPostIt.getChildren().add(doneButton);
     }
 }
