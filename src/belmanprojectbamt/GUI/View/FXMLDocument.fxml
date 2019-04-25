@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1400.0" style="-fx-background-color: #dddddd;" stylesheets="@CascadeStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="belmanprojectbamt.GUI.Controller.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="slider" prefHeight="900.0" prefWidth="1400.0" style="-fx-background-color: #dddddd;" stylesheets="@CascadeStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="belmanprojectbamt.GUI.Controller.FXMLDocumentController">
    <children>
       <FlowPane fx:id="flowPane" layoutX="14.0" layoutY="153.0" prefHeight="717.0" prefWidth="1356.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="153.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
@@ -14,6 +15,9 @@
             <Image url="@../../../logo.png" />
          </image>
       </ImageView>
-      <Slider layoutX="288.0" layoutY="877.0" prefHeight="18.0" prefWidth="912.0" value="50.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="288.0" AnchorPane.rightAnchor="200.0" />
+      <Slider layoutX="288.0" layoutY="877.0" prefHeight="18.0" prefWidth="912.0" value="50.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="288.0" AnchorPane.rightAnchor="200.0">
+         <effect>
+            <InnerShadow />
+         </effect></Slider>
    </children>
 </AnchorPane>
