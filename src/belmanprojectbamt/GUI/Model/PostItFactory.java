@@ -64,6 +64,7 @@ public class PostItFactory
         Label endDatelabel = new Label("End Date:");
         Label actualTimelabel = new Label("Actual Time:");
         Label lastActivelabel = new Label ("last department active:");
+        Label departmentlabel = new Label ("department");
         
         customerLabel.setLayoutX(14);
         customerLabel.setLayoutY(120);
@@ -93,7 +94,11 @@ public class PostItFactory
         lastActivelabel.setLayoutY(165);
         lastActivelabel.getStyleClass().add("label");
         
-        ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel, actualTimelabel, lastActivelabel);
+        departmentlabel.setLayoutX(165);
+        departmentlabel.setLayoutY(165);
+        departmentlabel.getStyleClass().add("label");
+        
+        ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel, actualTimelabel, lastActivelabel, departmentlabel);
     }
     
     private void createAnchorPane()
