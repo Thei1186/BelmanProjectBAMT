@@ -43,12 +43,12 @@ public class PostItFactory
         ProgressBar prgBarActual = new ProgressBar();
         
         prgBarActual.setLayoutX(14);
-        prgBarActual.setLayoutY(310);
+        prgBarActual.setLayoutY(270);
         prgBarActual.setProgress(0.6);
         prgBarActual.setPrefSize(508, 24);
         
         prgBarDate.setLayoutX(14);
-        prgBarDate.setLayoutY(250);
+        prgBarDate.setLayoutY(205);
         prgBarDate.setProgress(0.4);
         prgBarDate.setPrefSize(508, 24);
         
@@ -65,27 +65,27 @@ public class PostItFactory
         Label actualTimelabel = new Label("Actual Time:");
         
         customerLabel.setLayoutX(14);
-        customerLabel.setLayoutY(150);
+        customerLabel.setLayoutY(120);
         customerLabel.getStyleClass().add("label");
         
         orderLabel.setLayoutX(14);
-        orderLabel.setLayoutY(85);
+        orderLabel.setLayoutY(65);
         orderLabel.getStyleClass().add("label-header");
         
         delDatelabel.setLayoutX(14);
-        delDatelabel.setLayoutY(180);
+        delDatelabel.setLayoutY(145);
         delDatelabel.getStyleClass().add("label");
         
         startDatelabel.setLayoutX(14);
-        startDatelabel.setLayoutY(230);
+        startDatelabel.setLayoutY(185);
         startDatelabel.getStyleClass().add("label");
         
         endDatelabel.setLayoutX(450);
-        endDatelabel.setLayoutY(230);
+        endDatelabel.setLayoutY(185);
         endDatelabel.getStyleClass().add("label");
         
         actualTimelabel.setLayoutX(14);
-        actualTimelabel.setLayoutY(290);
+        actualTimelabel.setLayoutY(250);
         actualTimelabel.getStyleClass().add("label");
         
         ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel, actualTimelabel);
@@ -93,7 +93,7 @@ public class PostItFactory
     
     private void createAnchorPane()
     {
-        ancPostIt.setPrefSize(530, 410);
+        ancPostIt.setPrefSize(500, 350);
         ancPostIt.getStyleClass().add("anchorpane");
         
         flowPane.getChildren().add(ancPostIt);
@@ -118,7 +118,7 @@ public class PostItFactory
         
         doneButton.setText("Done");
         doneButton.setLayoutX(440);
-        doneButton.setLayoutY(360);
+        doneButton.setLayoutY(310);
         doneButton.setPrefSize(80, 20);
         
         ancPostIt.getChildren().add(doneButton);
