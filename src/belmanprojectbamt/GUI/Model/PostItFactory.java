@@ -63,8 +63,8 @@ public class PostItFactory
         Label startDatelabel = new Label("Start Date:");
         Label endDatelabel = new Label("End Date:");
         Label actualTimelabel = new Label("Actual Time:");
-        Label lastActivelabel = new Label ("last department active:");
-        Label departmentlabel = new Label ("department");
+        Label lastActivelabel = new Label ("Last Department Active:");
+        Label departmentlabel = new Label ("Department");
         
         customerLabel.setLayoutX(14);
         customerLabel.setLayoutY(120);
