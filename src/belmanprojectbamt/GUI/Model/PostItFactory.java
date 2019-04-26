@@ -90,12 +90,12 @@ public class PostItFactory
         actualTimelabel.setLayoutY(250);
         actualTimelabel.getStyleClass().add("label");
         
-        lastActivelabel.setLayoutX(14);
-        lastActivelabel.setLayoutY(165);
+        lastActivelabel.setLayoutX(350);
+        lastActivelabel.setLayoutY(65);
         lastActivelabel.getStyleClass().add("label");
         
-        departmentlabel.setLayoutX(165);
-        departmentlabel.setLayoutY(165);
+        departmentlabel.setLayoutX(350);
+        departmentlabel.setLayoutY(85);
         departmentlabel.getStyleClass().add("label");
         
         ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel, actualTimelabel, lastActivelabel, departmentlabel);
