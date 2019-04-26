@@ -30,6 +30,8 @@ and open the template in the editor.
 .scrollpane
 {
     -fx-background: #dddddd;
+    -fx-background-insets: 0;
+    
 }
 
 .scrollpane:focus
