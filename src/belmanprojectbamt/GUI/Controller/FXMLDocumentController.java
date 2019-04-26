@@ -23,7 +23,6 @@ public class FXMLDocumentController implements Initializable
 {
     @FXML
     FlowPane flowPane;
-    
     PostItFactory pFactory;
     @FXML
     private AnchorPane slider;
