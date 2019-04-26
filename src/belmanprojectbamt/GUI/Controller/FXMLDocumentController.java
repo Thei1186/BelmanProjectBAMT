@@ -26,6 +26,8 @@ public class FXMLDocumentController implements Initializable
     PostItFactory pFactory;
     @FXML
     private AnchorPane slider;
+    @FXML
+    private AnchorPane ancPane;
     /**
      * Initializes the controller class.
      * @param url
@@ -40,6 +42,9 @@ public class FXMLDocumentController implements Initializable
         flowPane.setVgap(5);
         flowPane.setHgap(5);
         flowPane.setOrientation(Orientation.VERTICAL);
+        
+//        ancPane.layoutXProperty().bi(flowPane.layoutXProperty());
+//        flowPane.layoutXProperty().bindBidirectional(ancPane.layoutXProperty());
     }    
     
     public void generatePostIt()
