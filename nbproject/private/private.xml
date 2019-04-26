@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/GUI/View/CascadeStyleSheet.css</file>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/BLL/LogicInterface.java</file>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/BelmanProjectBAMT.java</file>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/GUI/Model/PostItFactory.java</file>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/GUI/Model/BelmanModel.java</file>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/DAL/IFacade.java</file>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/DAL/Facade.java</file>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/BLL/BelmanManager.java</file>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/BE/Order.java</file>
-            <file>file:/C:/Users/Bjarne%20Helsinghof/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/GUI/Controller/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/asvor/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/GUI/Model/PostItFactory.java</file>
+            <file>file:/C:/Users/asvor/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/GUI/View/CascadeStyleSheet.css</file>
+            <file>file:/C:/Users/asvor/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/GUI/Controller/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/asvor/Documents/GitHub/BelmanProjectBAMT/src/belmanprojectbamt/GUI/Model/BelmanModel.java</file>
         </group>
     </open-files>
 </project-private>
