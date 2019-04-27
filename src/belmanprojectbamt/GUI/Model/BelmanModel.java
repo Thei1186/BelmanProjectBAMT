@@ -5,6 +5,11 @@
  */
 package belmanprojectbamt.GUI.Model;
 
+import belmanprojectbamt.BLL.BelmanManager;
+import belmanprojectbamt.BLL.LogicInterface;
+import belmanprojectbamt.DAL.Facade;
+import belmanprojectbamt.DAL.IFacade;
+
 /**
  *
  * @author Theis
@@ -13,10 +18,13 @@ public class BelmanModel
 {
 
     private static BelmanModel bModel;
+    private LogicInterface bManager;
 
     private BelmanModel()
     {
         bModel = null;
+        IFacade bFacade = new Facade();
+        bManager = new BelmanManager(bFacade);
     }
 
     public static BelmanModel getInstance()

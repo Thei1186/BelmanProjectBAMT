@@ -5,16 +5,18 @@
  */
 package belmanprojectbamt.BLL;
 
+import belmanprojectbamt.DAL.IFacade;
+
 /**
  *
  * @author Theis
  */
 public class BelmanManager implements LogicInterface
 {
-
-    public BelmanManager()
+    IFacade bDao;
+    public BelmanManager(IFacade facade)
     {
-     
+     bDao = facade;
     }
     
 }
