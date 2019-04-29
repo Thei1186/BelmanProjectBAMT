@@ -18,13 +18,15 @@ public class DepartmentTask
     private Date startDate;
     private Date endDate;
     private int timeOffset;
+    private boolean finishedTask;
 
-    public DepartmentTask(String departmentName, Date startDate, Date endDate, int timeOffset)
+    public DepartmentTask(String departmentName, Date startDate, Date endDate, int timeOffset, boolean finishedTask)
     {
         this.departmentName = departmentName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.timeOffset = timeOffset;
+        this.finishedTask = finishedTask;
     }
     
     public String getDepartmentName()
@@ -50,7 +52,38 @@ public class DepartmentTask
     @Override
     public String toString()
     {
-        return "DepartmentTask{" + "departmentName=" + departmentName + ", startDate=" + startDate + ", endDate=" + endDate + ", timeOffset=" + timeOffset + '}';
+        return "DepartmentTask{" + "departmentName=" + departmentName + ", startDate=" + startDate + ", endDate=" + endDate + ", timeOffset=" + timeOffset + ", finishedTask=" + finishedTask + '}';
+    }
+
+    
+    public Date getStartDate()
+    {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate)
+    {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate()
+    {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate)
+    {
+        this.endDate = endDate;
+    }
+
+    public boolean isFinishedTask()
+    {
+        return finishedTask;
+    }
+
+    public void setFinishedTask(boolean finishedTask)
+    {
+        this.finishedTask = finishedTask;
     }
 
 }

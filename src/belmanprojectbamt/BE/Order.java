@@ -55,4 +55,10 @@ public class Order
         this.deliveryDate = deliveryDate;
     }
 
+    @Override
+    public String toString()
+    {
+        return "Order{" + "orderNumber=" + orderNumber + ", customerName=" + customerName + ", deliveryDate=" + deliveryDate + '}';
+    }
+
 }
