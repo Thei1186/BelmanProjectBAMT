@@ -5,21 +5,28 @@
  */
 package belmanprojectbamt.BE;
 
+import java.util.Date;
+
 /**
  *
  * @author Theis
  */
-public class Department
+public class DepartmentTask
 {
- private String departmentName;
- private int timeOffset;
 
-    public Department(String departmentName, int timeOffset)
+    private String departmentName;
+    private Date startDate;
+    private Date endDate;
+    private int timeOffset;
+
+    public DepartmentTask(String departmentName, Date startDate, Date endDate, int timeOffset)
     {
         this.departmentName = departmentName;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.timeOffset = timeOffset;
     }
-
+    
     public String getDepartmentName()
     {
         return departmentName;
@@ -39,5 +46,11 @@ public class Department
     {
         this.timeOffset = timeOffset;
     }
- 
+
+    @Override
+    public String toString()
+    {
+        return "DepartmentTask{" + "departmentName=" + departmentName + ", startDate=" + startDate + ", endDate=" + endDate + ", timeOffset=" + timeOffset + '}';
+    }
+
 }
