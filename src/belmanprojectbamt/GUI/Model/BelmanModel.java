@@ -12,6 +12,10 @@ import belmanprojectbamt.BLL.LogicInterface;
 import belmanprojectbamt.DAL.Facade;
 import belmanprojectbamt.DAL.IFacade;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -22,12 +26,26 @@ public class BelmanModel
 
     private static BelmanModel bModelInstance;
     private LogicInterface bManager;
+    
+    private ObservableList<Order> productionOrders;
+    private ObservableList<DepartmentTask> departmentTasks;
 
     private BelmanModel()
     {
         bModelInstance = null;
         IFacade bFacade = new Facade();
         bManager = new BelmanManager(bFacade);
+        
+        try {
+            productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
+            departmentTasks = FXCollections.observableArrayList(bManager.getDepartmentTasks());
+            
+            productionOrders.addAll(bManager.getProductionOrder());
+            departmentTasks.addAll(bManager.getDepartmentTasks());
+        } catch (Exception ex) {
+            Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
     }
 
     public static BelmanModel getInstance()
@@ -38,22 +56,32 @@ public class BelmanModel
         }
         return bModelInstance;
     }
-//
-//    /**
-//     *
-//     * @return
-//     */
-//    public List<Order> getProductionOrder()
-//    {
-//        
-//    }
-//
-//    /**
-//     *
-//     * @return
-//     */
-//    public List<DepartmentTask> getDepartmentTasks()
-//    {
-//
-//    }
+
+    /**
+     *
+     * @return
+     */
+    public ObservableList<Order> getProductionOrder()
+    {
+        try {
+            return FXCollections.observableArrayList(bManager.getProductionOrder());
+        } catch (Exception ex) {
+            Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<DepartmentTask> getDepartmentTasks()
+    {
+        try {
+            return FXCollections.observableArrayList(bManager.getDepartmentTasks());
+        } catch (Exception ex) {
+            Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

@@ -5,8 +5,12 @@
  */
 package belmanprojectbamt.GUI.Controller;
 
+import belmanprojectbamt.BE.DepartmentTask;
+import belmanprojectbamt.BE.Order;
+import belmanprojectbamt.GUI.Model.BelmanModel;
 import belmanprojectbamt.GUI.Model.PostItFactory;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,12 +26,18 @@ import javafx.scene.layout.FlowPane;
 public class FXMLDocumentController implements Initializable 
 {
     @FXML
-    FlowPane flowPane;
-    PostItFactory pFactory;
+    private FlowPane flowPane;
     @FXML
     private AnchorPane slider;
     @FXML
     private AnchorPane ancPane;
+    
+    private PostItFactory pFactory;
+    
+    private List<Order> productionOrders;
+    private List<DepartmentTask> departmentTasks;
+    private BelmanModel belModelInstance;
+    
     /**
      * Initializes the controller class.
      * @param url
@@ -36,6 +46,11 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        belModelInstance = BelmanModel.getInstance();
+        productionOrders = belModelInstance.getProductionOrder();
+        
+//        productionOrders.addAll(productionOrders);
+        
         pFactory = new PostItFactory(flowPane);
         generatePostIt();
         
@@ -46,10 +61,11 @@ public class FXMLDocumentController implements Initializable
     
     public void generatePostIt()
     {
-        for (int i = 0; i < 10; i++) 
+        for (int i = 0; i < productionOrders.size(); i++) 
         {
             pFactory.createPostIt();
             
         }
     }
+
 }
