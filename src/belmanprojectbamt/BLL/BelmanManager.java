@@ -5,7 +5,10 @@
  */
 package belmanprojectbamt.BLL;
 
+import belmanprojectbamt.BE.DepartmentTask;
+import belmanprojectbamt.BE.Order;
 import belmanprojectbamt.DAL.IFacade;
+import java.util.List;
 
 /**
  *
@@ -13,10 +16,24 @@ import belmanprojectbamt.DAL.IFacade;
  */
 public class BelmanManager implements LogicInterface
 {
-    IFacade bDao;
+
+    IFacade belDao;
+
     public BelmanManager(IFacade facade)
     {
-     bDao = facade;
+        belDao = facade;
     }
-    
+
+    @Override
+    public List<Order> getProductionOrder() throws Exception
+    {
+        return belDao.getProductionOrder();
+    }
+
+    @Override
+    public List<DepartmentTask> getDepartmentTasks() throws Exception
+    {
+        return belDao.getDepartmentTasks();
+    }
+
 }

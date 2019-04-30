@@ -36,7 +36,7 @@ public class FileDAO
         departmentTasks = new ArrayList<>();
     }
 
-    public List<Order> getProductionOrders() throws FileNotFoundException, IOException, ParseException, java.text.ParseException
+    public List<Order> getProductionOrders() throws FileNotFoundException, IOException, ParseException
     {
         Object obj = new JSONParser().parse(new FileReader("Data.json"));
 
@@ -58,15 +58,8 @@ public class FileDAO
             Date deliveryDate = formatDateString(sDate);
 
             Order order = new Order(orderNum, customerName, deliveryDate);
-            productionOrders.add(order);
-
-//            JSONObject deptTaskObject = (JSONObject) oObject.get("DepartmentTasks");
-//            Date startDate = (Date) deptTaskObject.get("StartDate");
+            productionOrders.add(order);      
         }
-//        for (Order productionOrder : productionOrders)
-//        {
-//            System.out.println(productionOrder.toString());
-//        }
         return productionOrders;
     }
 
@@ -101,7 +94,7 @@ public class FileDAO
         return departmentTasks;
     }
 
-    public Date formatDateString(String dateString)
+    private Date formatDateString(String dateString)
     {
         Long milli = Long.parseLong(dateString.substring(6, dateString.indexOf("+")));
         Date newDate = new Date(milli);

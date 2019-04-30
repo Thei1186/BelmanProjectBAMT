@@ -5,11 +5,28 @@
  */
 package belmanprojectbamt.DAL;
 
+import belmanprojectbamt.BE.DepartmentTask;
+import belmanprojectbamt.BE.Order;
+import java.util.List;
+
 /**
  *
  * @author Theis
  */
 public interface IFacade
 {
-    
+
+    /**
+     *
+     * @return
+     * @throws java.lang.Exception
+     */
+    public List<Order> getProductionOrder() throws Exception;
+
+    /**
+     *
+     * @return
+     * @throws java.lang.Exception
+     */
+    public List<DepartmentTask> getDepartmentTasks() throws Exception;
 }
