@@ -36,7 +36,7 @@ public class FXMLDocumentController implements Initializable
     
     private List<Order> productionOrders;
     private List<DepartmentTask> departmentTasks;
-    private BelmanModel belModelInstance;
+    private BelmanModel belModelInstance = BelmanModel.getInstance();
     
     /**
      * Initializes the controller class.
@@ -46,10 +46,8 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        belModelInstance = BelmanModel.getInstance();
+//        belModelInstance = BelmanModel.getInstance();
         productionOrders = belModelInstance.getProductionOrder();
-        
-//        productionOrders.addAll(productionOrders);
         
         pFactory = new PostItFactory(flowPane);
         generatePostIt();
@@ -64,6 +62,7 @@ public class FXMLDocumentController implements Initializable
         for (int i = 0; i < productionOrders.size(); i++) 
         {
             pFactory.createPostIt();
+            System.out.println(productionOrders.size());
             
         }
     }
