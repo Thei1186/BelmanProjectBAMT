@@ -30,9 +30,10 @@ public class PostItFactory
     private List<Order> productionOrders;
     private List<DepartmentTask> departmentTasks;
     private int index;
-
+    private DateFormatter dFormat;
     public PostItFactory(FlowPane flowPane, List<Order> productionOrders, List<DepartmentTask> departmentTasks, int index) 
     {
+        dFormat = new DateFormatter();
         this.flowPane = flowPane;
         this.productionOrders = productionOrders;
         this.departmentTasks = departmentTasks;
@@ -80,9 +81,8 @@ public class PostItFactory
         customerName.setLayoutX(100);
         customerName.setLayoutY(120);
         customerName.setText(productionOrders.get(index).getCustomerName());
-        
-        DateFormat df = new SimpleDateFormat("dd MMM yyyy");
-        String formattedDate = df.format(productionOrders.get(index).getDeliveryDate());
+      
+        String formattedDate = dFormat.formatDate(productionOrders.get(index).getDeliveryDate());
         
         delDate.setLayoutX(120);
         delDate.setLayoutY(145);
