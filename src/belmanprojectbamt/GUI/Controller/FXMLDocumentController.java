@@ -38,6 +38,8 @@ public class FXMLDocumentController implements Initializable
     
     private List<DepartmentTask> departmentTasks;
     
+    private int index;
+    
     private final BelmanModel belModelInstance = BelmanModel.getInstance();
     
     /**
@@ -48,10 +50,11 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-//        belModelInstance = BelmanModel.getInstance();
+        this.index = 0;
         productionOrders = belModelInstance.getProductionOrder();
+        departmentTasks = belModelInstance.getDepartmentTasks();
         
-        pFactory = new PostItFactory(flowPane);
+        pFactory = new PostItFactory(flowPane, productionOrders, departmentTasks, index);
         generatePostIt();
         
         flowPane.setVgap(6);

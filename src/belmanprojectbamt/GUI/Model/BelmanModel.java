@@ -37,11 +37,9 @@ public class BelmanModel
         bManager = new BelmanManager(bFacade);
         
         try {
-//            productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
-//            departmentTasks = FXCollections.observableArrayList(bManager.getDepartmentTasks());
-//            
-//           
-//            departmentTasks.addAll(bManager.getDepartmentTasks());
+            productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
+            departmentTasks = FXCollections.observableArrayList(bManager.getDepartmentTasks());
+
         } catch (Exception ex) {
             Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,7 +62,7 @@ public class BelmanModel
     public ObservableList<Order> getProductionOrder()
     {
         try {
-            return FXCollections.observableArrayList(bManager.getProductionOrder());
+            return productionOrders;
         } catch (Exception ex) {
             Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,7 +76,7 @@ public class BelmanModel
     public ObservableList<DepartmentTask> getDepartmentTasks()
     {
         try {
-            return FXCollections.observableArrayList(bManager.getDepartmentTasks());
+            return departmentTasks;
         } catch (Exception ex) {
             Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -5,6 +5,12 @@
  */
 package belmanprojectbamt.GUI.Model;
 
+import belmanprojectbamt.BE.DepartmentTask;
+import belmanprojectbamt.BE.Order;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -20,9 +26,17 @@ public class PostItFactory
 {
     private FlowPane flowPane;
     private AnchorPane ancPostIt;
+    
+    private List<Order> productionOrders;
+    private List<DepartmentTask> departmentTasks;
+    private int index;
 
-    public PostItFactory(FlowPane flowPane) {
+    public PostItFactory(FlowPane flowPane, List<Order> productionOrders, List<DepartmentTask> departmentTasks, int index) 
+    {
         this.flowPane = flowPane;
+        this.productionOrders = productionOrders;
+        this.departmentTasks = departmentTasks;
+        this.index = 0;
     }
     
     public AnchorPane createPostIt()
@@ -33,7 +47,8 @@ public class PostItFactory
         createLabels();
         createComboBox();
         createButton();
-       
+        setLabelText(index);
+       index++;
         return ancPostIt;
     }
     
@@ -55,6 +70,35 @@ public class PostItFactory
         ancPostIt.getChildren().addAll(prgBarDate, prgBarActual);
     }
     
+    private void setLabelText(int index)
+    {
+        Label customerName = new Label();
+        Label delDate = new Label();
+        Label orderNr = new Label();
+        Label startDate = new Label();
+
+        customerName.setLayoutX(100);
+        customerName.setLayoutY(120);
+        customerName.setText(productionOrders.get(index).getCustomerName());
+        
+        DateFormat df = new SimpleDateFormat("dd MMM yyyy");
+        String formattedDate = df.format(productionOrders.get(index).getDeliveryDate());
+        
+        delDate.setLayoutX(120);
+        delDate.setLayoutY(145);
+        delDate.setText(formattedDate);
+        
+        orderNr.setLayoutX(200);
+        orderNr.setLayoutY(75);
+        orderNr.setText(productionOrders.get(index).getOrderNumber());
+        
+        startDate.setLayoutX(100);
+        startDate.setLayoutY(185);
+        startDate.setText(formattedDate);
+        
+        ancPostIt.getChildren().addAll(customerName, delDate, orderNr);
+    }
+    
     private void createLabels()
     {
         Label customerLabel = new Label("Customer:");
@@ -68,7 +112,7 @@ public class PostItFactory
         
         customerLabel.setLayoutX(14);
         customerLabel.setLayoutY(120);
-        customerLabel.getStyleClass().add("label");
+        customerLabel.getStyleClass().add("label-sub-header");
         
         orderLabel.setLayoutX(14);
         orderLabel.setLayoutY(65);
@@ -76,23 +120,23 @@ public class PostItFactory
         
         delDatelabel.setLayoutX(14);
         delDatelabel.setLayoutY(145);
-        delDatelabel.getStyleClass().add("label");
+        delDatelabel.getStyleClass().add("label-sub-header");
         
         startDatelabel.setLayoutX(14);
         startDatelabel.setLayoutY(185);
-        startDatelabel.getStyleClass().add("label");
+        startDatelabel.getStyleClass().add("label-sub-header");
         
         endDatelabel.setLayoutX(450);
         endDatelabel.setLayoutY(185);
-        endDatelabel.getStyleClass().add("label");
+        endDatelabel.getStyleClass().add("label-sub-header");
         
         actualTimelabel.setLayoutX(14);
         actualTimelabel.setLayoutY(250);
-        actualTimelabel.getStyleClass().add("label");
+        actualTimelabel.getStyleClass().add("label-sub-header");
         
         lastActivelabel.setLayoutX(350);
         lastActivelabel.setLayoutY(65);
-        lastActivelabel.getStyleClass().add("label");
+        lastActivelabel.getStyleClass().add("label-sub-header");
         
         departmentlabel.setLayoutX(350);
         departmentlabel.setLayoutY(85);
