@@ -59,11 +59,6 @@ public class FXMLDocumentController implements Initializable
         productionOrders = belModelInstance.getProductionOrder();
         departmentTasks = belModelInstance.getDepartmentTasks();
 
-        
-        pFactory = new PostItFactory(flowPane, productionOrders, departmentTasks, index);
-        generatePostIt();
-
-
         pFactory = new PostItFactory(flowPane, productionOrders, departmentTasks);
 
         handlePostIts();
