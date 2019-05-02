@@ -13,9 +13,9 @@
             <Image url="@../../../logo.png" />
          </image>
       </ImageView>
-      <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="183.0" prefHeight="684.0" prefWidth="1359.0" styleClass="scrollpane" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="183.0">
+      <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="163.0" prefHeight="721.0" prefWidth="1373.0" style="-fx-background-color: #dddddd;" styleClass="scrollpane" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="163.0">
          <content>
-            <FlowPane fx:id="flowPane" prefHeight="732.0" prefWidth="1340.0" />
+            <FlowPane fx:id="flowPane" prefHeight="761.0" prefWidth="1350.0" style="-fx-background-color: #dddddd;" />
          </content>
       </ScrollPane>
    </children>

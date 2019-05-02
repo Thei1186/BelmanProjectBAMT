@@ -33,17 +33,13 @@ and open the template in the editor.
 {
     -fx-padding: 10px;
     -fx-background-color: #004686;
+    /*-fx-background-color: #dddddd;*/
+    /*-fx-effect: dropshadow( one-pass-box , grey , 10 , 0.0 , 10 , 15 );*/
 }
 
 .scrollpane
 {
     -fx-background: #dddddd;
     -fx-background-insets: 0;
-    
 }
 
-.scrollpane:focus
-{
-    outline: none;
-    outline-color: #dddddd;
-}

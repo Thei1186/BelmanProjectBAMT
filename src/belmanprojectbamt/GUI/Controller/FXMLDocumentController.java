@@ -56,9 +56,11 @@ public class FXMLDocumentController implements Initializable
         
         pFactory = new PostItFactory(flowPane, productionOrders, departmentTasks, index);
         generatePostIt();
-        
+//        
         flowPane.setVgap(6);
         flowPane.setHgap(6);
+//        flowPane.setVgap(30);
+//        flowPane.setHgap(18);
         flowPane.setOrientation(Orientation.VERTICAL);
     }    
     
