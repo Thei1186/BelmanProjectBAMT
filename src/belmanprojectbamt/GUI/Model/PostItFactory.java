@@ -61,16 +61,16 @@ public class PostItFactory
     {
         ProgressBar prgBarDate = new ProgressBar();
         ProgressBar prgBarActual = new ProgressBar();
-
-        prgBarActual.setLayoutX(14);
-        prgBarActual.setLayoutY(270);
-        prgBarActual.setProgress(0.6);
-        prgBarActual.setPrefSize(508, 24);
-
+        
         prgBarDate.setLayoutX(14);
-        prgBarDate.setLayoutY(205);
+        prgBarDate.setLayoutY(240);
         prgBarDate.setProgress(0.4);
-        prgBarDate.setPrefSize(508, 24);
+        prgBarDate.setPrefSize(565, 24);
+        
+        prgBarActual.setLayoutX(14);
+        prgBarActual.setLayoutY(305);
+        prgBarActual.setProgress(0.6);
+        prgBarActual.setPrefSize(565, 24);
 
         ancPostIt.getChildren().addAll(prgBarDate, prgBarActual);
     }
@@ -83,7 +83,7 @@ public class PostItFactory
         Label startDate = new Label();
         Label endDate = new Label();
         
-        customerName.setLayoutX(100);
+        customerName.setLayoutX(120);
         customerName.setLayoutY(120);
         customerName.setText(productionOrders.get(index).getCustomerName());
 
@@ -91,20 +91,20 @@ public class PostItFactory
         String formattedStartDate = dFormat.formatDate(productionOrders.get(index).getDeptTasks().get(0).getStartDate());
         String formattedEndDate = dFormat.formatDate(productionOrders.get(index).getDeptTasks().get(0).getEndDate());
         
-        delDate.setLayoutX(120);
-        delDate.setLayoutY(145);
+        delDate.setLayoutX(155);
+        delDate.setLayoutY(160);
         delDate.setText(formattedDate);
 
         orderNr.setLayoutX(200);
-        orderNr.setLayoutY(75);
+        orderNr.setLayoutY(70);
         orderNr.setText(productionOrders.get(index).getOrderNumber());
 
-        startDate.setLayoutX(100);
-        startDate.setLayoutY(185);
+        startDate.setLayoutX(120);
+        startDate.setLayoutY(208);
         startDate.setText(formattedStartDate);
         
-        endDate.setLayoutX(450);
-        endDate.setLayoutY(185);
+        endDate.setLayoutX(462);
+        endDate.setLayoutY(208);
         endDate.setText(formattedEndDate);
         ancPostIt.getChildren().addAll(customerName, delDate, orderNr, startDate, endDate);
     }
@@ -129,19 +129,19 @@ public class PostItFactory
         orderLabel.getStyleClass().add("label-header");
 
         delDatelabel.setLayoutX(14);
-        delDatelabel.setLayoutY(145);
+        delDatelabel.setLayoutY(160);
         delDatelabel.getStyleClass().add("label-sub-header");
 
         startDatelabel.setLayoutX(14);
-        startDatelabel.setLayoutY(185);
+        startDatelabel.setLayoutY(208);
         startDatelabel.getStyleClass().add("label-sub-header");
 
-        endDatelabel.setLayoutX(380);
-        endDatelabel.setLayoutY(185);
+        endDatelabel.setLayoutX(365);
+        endDatelabel.setLayoutY(208);
         endDatelabel.getStyleClass().add("label-sub-header");
 
         actualTimelabel.setLayoutX(14);
-        actualTimelabel.setLayoutY(250);
+        actualTimelabel.setLayoutY(275);
         actualTimelabel.getStyleClass().add("label-sub-header");
 
         lastActivelabel.setLayoutX(350);
@@ -157,7 +157,7 @@ public class PostItFactory
 
     private void createAnchorPane()
     {
-        ancPostIt.setPrefSize(500, 350);
+        ancPostIt.setPrefSize(570, 390);
         ancPostIt.getStyleClass().add("anchorpane");
 
         flowPane.getChildren().add(ancPostIt);
@@ -167,8 +167,8 @@ public class PostItFactory
     {
         ComboBox comboDept = new ComboBox();
 
-        comboDept.setLayoutX(310);
         comboDept.setPromptText("Departments");
+        comboDept.setLayoutX(380);
         comboDept.setLayoutY(14);
         comboDept.setPrefSize(200, 15);
 
@@ -181,8 +181,8 @@ public class PostItFactory
         Button doneButton = new Button();
 
         doneButton.setText("Done");
-        doneButton.setLayoutX(440);
-        doneButton.setLayoutY(310);
+        doneButton.setLayoutX(498);
+        doneButton.setLayoutY(345);
         doneButton.setPrefSize(80, 20);
 
         ancPostIt.getChildren().add(doneButton);

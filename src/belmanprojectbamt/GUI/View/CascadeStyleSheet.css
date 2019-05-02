@@ -10,7 +10,7 @@ and open the template in the editor.
 
 .label
 {
-    -fx-font-size: 15px;
+    -fx-font-size: 20px;
     -fx-text-fill: white;
     
 }
@@ -24,7 +24,7 @@ and open the template in the editor.
 
 .label-sub-header
 {
-    -fx-font-size: 15px;
+    -fx-font-size: 20px;
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
