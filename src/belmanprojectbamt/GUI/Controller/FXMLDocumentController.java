@@ -16,6 +16,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
@@ -41,8 +42,6 @@ public class FXMLDocumentController implements Initializable
 
     private List<Order> productionOrders;
 
-    private List<DepartmentTask> departmentTasks;
-
     private int index;
 
     private final BelmanModel belModelInstance = BelmanModel.getInstance();
@@ -58,7 +57,7 @@ public class FXMLDocumentController implements Initializable
     {
         productionOrders = belModelInstance.getProductionOrder();
 
-        pFactory = new PostItFactory(flowPane, productionOrders, departmentTasks);
+        pFactory = new PostItFactory(flowPane, productionOrders);
 
         handlePostIts();
 
@@ -86,7 +85,10 @@ public class FXMLDocumentController implements Initializable
 
     public void generatePostIt()
     {
-        pFactory.createPostIt();
+        Platform.runLater(() ->
+        {
+        pFactory.createPostIt();   
+        });
     }
 
 }

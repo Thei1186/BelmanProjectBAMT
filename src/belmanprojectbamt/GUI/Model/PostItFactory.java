@@ -8,7 +8,6 @@ package belmanprojectbamt.GUI.Model;
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.Order;
 import java.util.List;
-import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -27,33 +26,33 @@ public class PostItFactory
     private AnchorPane ancPostIt;
 
     private List<Order> productionOrders;
-    private List<DepartmentTask> departmentTasks;
     private int index;
     private DateFormatter dFormat;
-
-    public PostItFactory(FlowPane flowPane, List<Order> productionOrders, List<DepartmentTask> departmentTasks)
+    private String currentDept;
+    
+    public PostItFactory(FlowPane flowPane, List<Order> productionOrders)
     {
         dFormat = new DateFormatter();
         this.flowPane = flowPane;
         this.productionOrders = productionOrders;
-        this.departmentTasks = departmentTasks;
         this.index = 0;
+        this.currentDept = "Halvfab";
     }
 
     public void createPostIt()
-    {
-        Platform.runLater(() ->
+    {     
+        if (productionOrders.get(index).getDeptTasks().get(departmentIndex()).getDepartmentName().toLowerCase().equals(currentDept.toLowerCase()) )
         {
-            ancPostIt = new AnchorPane();
-            setProgressBar();
-            createAnchorPane();
-            createLabels();
-            createComboBox();
-            createButton();
-            setLabelText(index);
+        ancPostIt = new AnchorPane();
+        setProgressBar();
+        createAnchorPane();
+        createLabels();
+        createComboBox();
+        createButton();
+        setLabelText(index);
+        }
         index++;
-        
-        });
+
 //        return ancPostIt;
     }
 
@@ -61,12 +60,12 @@ public class PostItFactory
     {
         ProgressBar prgBarDate = new ProgressBar();
         ProgressBar prgBarActual = new ProgressBar();
-        
+
         prgBarDate.setLayoutX(14);
         prgBarDate.setLayoutY(240);
         prgBarDate.setProgress(0.4);
         prgBarDate.setPrefSize(565, 24);
-        
+
         prgBarActual.setLayoutX(14);
         prgBarActual.setLayoutY(305);
         prgBarActual.setProgress(0.6);
@@ -82,15 +81,16 @@ public class PostItFactory
         Label orderNr = new Label();
         Label startDate = new Label();
         Label endDate = new Label();
-        
+
         customerName.setLayoutX(120);
         customerName.setLayoutY(120);
         customerName.setText(productionOrders.get(index).getCustomerName());
 
         String formattedDate = dFormat.formatDate(productionOrders.get(index).getDeliveryDate());
-        String formattedStartDate = dFormat.formatDate(productionOrders.get(index).getDeptTasks().get(0).getStartDate());
-        String formattedEndDate = dFormat.formatDate(productionOrders.get(index).getDeptTasks().get(0).getEndDate());
-        
+
+        String formattedStartDate = dFormat.formatDate(productionOrders.get(index).getDeptTasks().get(departmentIndex()).getStartDate());
+        String formattedEndDate = dFormat.formatDate(productionOrders.get(index).getDeptTasks().get(departmentIndex()).getEndDate());
+
         delDate.setLayoutX(155);
         delDate.setLayoutY(160);
         delDate.setText(formattedDate);
@@ -102,11 +102,25 @@ public class PostItFactory
         startDate.setLayoutX(120);
         startDate.setLayoutY(208);
         startDate.setText(formattedStartDate);
-        
+
         endDate.setLayoutX(462);
         endDate.setLayoutY(208);
         endDate.setText(formattedEndDate);
         ancPostIt.getChildren().addAll(customerName, delDate, orderNr, startDate, endDate);
+    }
+
+    private int departmentIndex()
+    {
+        int departmentIndex = 0;
+        if (productionOrders.get(index).getDeptTasks().get(0).isFinishedTask() == true)
+        {
+            if (productionOrders.get(index).getDeptTasks().size() != departmentIndex + 1)
+            {
+                departmentIndex++;
+            }
+
+        }
+        return departmentIndex;
     }
 
     private void createLabels()
