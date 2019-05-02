@@ -29,10 +29,6 @@ public class Facade implements IFacade
         return fDAO.getProductionOrders();
     }
 
-    @Override
-    public List<DepartmentTask> getDepartmentTasks() throws Exception
-    {
-       return fDAO.getDepartmentTasks();
-    }
+    
     
 }

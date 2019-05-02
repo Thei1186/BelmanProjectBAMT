@@ -57,7 +57,6 @@ public class FXMLDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         productionOrders = belModelInstance.getProductionOrder();
-        departmentTasks = belModelInstance.getDepartmentTasks();
 
         pFactory = new PostItFactory(flowPane, productionOrders, departmentTasks);
 

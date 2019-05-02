@@ -81,13 +81,16 @@ public class PostItFactory
         Label delDate = new Label();
         Label orderNr = new Label();
         Label startDate = new Label();
-
+        Label endDate = new Label();
+        
         customerName.setLayoutX(100);
         customerName.setLayoutY(120);
         customerName.setText(productionOrders.get(index).getCustomerName());
 
         String formattedDate = dFormat.formatDate(productionOrders.get(index).getDeliveryDate());
-
+        String formattedStartDate = dFormat.formatDate(productionOrders.get(index).getDeptTasks().get(0).getStartDate());
+        String formattedEndDate = dFormat.formatDate(productionOrders.get(index).getDeptTasks().get(0).getEndDate());
+        
         delDate.setLayoutX(120);
         delDate.setLayoutY(145);
         delDate.setText(formattedDate);
@@ -98,9 +101,12 @@ public class PostItFactory
 
         startDate.setLayoutX(100);
         startDate.setLayoutY(185);
-        startDate.setText(formattedDate);
-
-        ancPostIt.getChildren().addAll(customerName, delDate, orderNr);
+        startDate.setText(formattedStartDate);
+        
+        endDate.setLayoutX(450);
+        endDate.setLayoutY(185);
+        endDate.setText(formattedEndDate);
+        ancPostIt.getChildren().addAll(customerName, delDate, orderNr, startDate, endDate);
     }
 
     private void createLabels()
@@ -130,7 +136,7 @@ public class PostItFactory
         startDatelabel.setLayoutY(185);
         startDatelabel.getStyleClass().add("label-sub-header");
 
-        endDatelabel.setLayoutX(450);
+        endDatelabel.setLayoutX(380);
         endDatelabel.setLayoutY(185);
         endDatelabel.getStyleClass().add("label-sub-header");
 

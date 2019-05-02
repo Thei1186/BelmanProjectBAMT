@@ -30,10 +30,6 @@ public class BelmanManager implements LogicInterface
         return belDao.getProductionOrder();
     }
 
-    @Override
-    public List<DepartmentTask> getDepartmentTasks() throws Exception
-    {
-        return belDao.getDepartmentTasks();
-    }
+   
 
 }

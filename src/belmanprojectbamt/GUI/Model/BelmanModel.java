@@ -11,7 +11,6 @@ import belmanprojectbamt.BLL.BelmanManager;
 import belmanprojectbamt.BLL.LogicInterface;
 import belmanprojectbamt.DAL.Facade;
 import belmanprojectbamt.DAL.IFacade;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -28,7 +27,7 @@ public class BelmanModel
     private LogicInterface bManager;
     
     private ObservableList<Order> productionOrders;
-    private ObservableList<DepartmentTask> departmentTasks;
+
 
     private BelmanModel()
     {
@@ -38,7 +37,6 @@ public class BelmanModel
         
         try {
             productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
-            departmentTasks = FXCollections.observableArrayList(bManager.getDepartmentTasks());
 
         } catch (Exception ex) {
             Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,17 +67,4 @@ public class BelmanModel
         return null;
     }
 
-    /**
-     *
-     * @return
-     */
-    public ObservableList<DepartmentTask> getDepartmentTasks()
-    {
-        try {
-            return departmentTasks;
-        } catch (Exception ex) {
-            Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
 }

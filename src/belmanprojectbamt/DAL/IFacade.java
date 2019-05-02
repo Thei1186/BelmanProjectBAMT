@@ -23,10 +23,4 @@ public interface IFacade
      */
     public List<Order> getProductionOrder() throws Exception;
 
-    /**
-     *
-     * @return
-     * @throws java.lang.Exception
-     */
-    public List<DepartmentTask> getDepartmentTasks() throws Exception;
 }

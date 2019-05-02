@@ -5,7 +5,9 @@
  */
 package belmanprojectbamt.BE;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -16,6 +18,7 @@ public class Order
   private String orderNumber;
   private String customerName;
   private Date deliveryDate;
+  private List<DepartmentTask> deptTasks;
   
 
     public Order(String orderNumber, String customerName, Date deliveryDate)
@@ -23,6 +26,7 @@ public class Order
         this.orderNumber = orderNumber;
         this.customerName = customerName;
         this.deliveryDate = deliveryDate;
+        this.deptTasks = new ArrayList<>();
     }
 
     public String getOrderNumber()
@@ -58,7 +62,16 @@ public class Order
     @Override
     public String toString()
     {
-        return "Order{" + "orderNumber=" + orderNumber + ", customerName=" + customerName + ", deliveryDate=" + deliveryDate + '}';
+        return "Order{" + "orderNumber=" + orderNumber + ", customerName=" + customerName + ", deliveryDate=" + deliveryDate + ", deptTasks=" + deptTasks + '}';
     }
 
+    public List<DepartmentTask> getDeptTasks()
+    {
+        return deptTasks;
+    }
+
+    public void setDeptTasks(List<DepartmentTask> deptTasks)
+    {
+        this.deptTasks = deptTasks;
+    }
 }

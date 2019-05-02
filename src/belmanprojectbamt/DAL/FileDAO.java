@@ -44,7 +44,7 @@ public class FileDAO
         for (Object object : jArray)
         {
             JSONObject oObject = (JSONObject) object;
-
+            
             JSONObject pOObject = (JSONObject) oObject.get("Customer");
             String customerName = (String) pOObject.get("Name");
 
@@ -54,24 +54,9 @@ public class FileDAO
             JSONObject deliveryObject = (JSONObject) oObject.get("Delivery");
             String sDate = (String) deliveryObject.get("DeliveryTime");
             Date deliveryDate = formatDateString(sDate);
-
             Order order = new Order(orderNum, customerName, deliveryDate);
-            productionOrders.add(order);      
-        }
-        return productionOrders;
-    }
-
-    public List<DepartmentTask> getDepartmentTasks() throws FileNotFoundException, IOException, ParseException
-    {
-        Object obj = new JSONParser().parse(new FileReader("Data.json"));
-
-        JSONObject jObject = (JSONObject) obj;
-
-        JSONArray jArray = (JSONArray) jObject.get("ProductionOrders");
-        for (Object object : jArray)
-        {
-            JSONObject oObject = (JSONObject) object;
-            JSONArray dTaskArray = (JSONArray) oObject.get("DepartmentTasks");
+            
+            JSONArray dTaskArray = (JSONArray) oObject.get("DepartmentTasks");            
             for (Object object1 : dTaskArray)
             {
                 JSONObject dTaskObject = (JSONObject) object1;
@@ -85,11 +70,13 @@ public class FileDAO
                 Date startDate = formatDateString(startDateString);
 
                 boolean finishedTask = (boolean) dTaskObject.get("FinishedOrder");
-
-                departmentTasks.add(new DepartmentTask(departmentName, startDate, endDate, 0, finishedTask));
+                
+                DepartmentTask dTask = new DepartmentTask(departmentName, startDate, endDate, 0, finishedTask);               
+                order.getDeptTasks().add(dTask);
             }
+            productionOrders.add(order);
         }
-        return departmentTasks;
+        return productionOrders;
     }
 
     private Date formatDateString(String dateString)
