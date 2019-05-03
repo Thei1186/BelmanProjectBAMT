@@ -160,10 +160,11 @@ public class PostItFactory
 
         lastActivelabel.setLayoutX(350);
         lastActivelabel.setLayoutY(65);
-//        lastActivelabel.getStyleClass().add("label-sub-header");
+        lastActivelabel.getStyleClass().add("label-sub-header");
 
         departmentlabel.setLayoutX(350);
         departmentlabel.setLayoutY(85);
+        departmentlabel.getStyleClass().add("label");
 
         ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel, actualTimelabel, lastActivelabel, departmentlabel);
     }

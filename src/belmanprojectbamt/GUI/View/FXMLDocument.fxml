@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,6 +18,5 @@
             <FlowPane fx:id="flowPane" prefHeight="800.0" prefWidth="1354.0" style="-fx-background-color: #dddddd;" />
          </content>
       </ScrollPane>
-      <Label alignment="CENTER" layoutX="478.0" layoutY="49.0" style="-fx-text-fill: black; -fx-font-size: 50; -fx-alignment: center;" text="Current Department" AnchorPane.leftAnchor="478.0" AnchorPane.rightAnchor="478.0" AnchorPane.topAnchor="49.0" />
    </children>
 </AnchorPane>
