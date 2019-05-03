@@ -126,7 +126,7 @@ public class PostItFactory
             if (productionOrders.get(index).getDeptTasks().get(departmentIndex()).isFinishedTask())
             {
                 Label isDone = new Label("Done");
-                isDone.setLayoutX(350);
+                isDone.setLayoutX(360);
                 isDone.setLayoutY(85);
                 isDone.getStyleClass().add("label-done");
                 isDone.setTextFill(Color.web("#33ff33"));                
