@@ -5,7 +5,6 @@
  */
 package belmanprojectbamt.GUI.Model;
 
-import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.Order;
 import java.util.List;
 import javafx.scene.control.Button;
@@ -14,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -29,7 +29,7 @@ public class PostItFactory
     private int index;
     private DateFormatter dFormat;
     private String currentDept;
-    
+
     public PostItFactory(FlowPane flowPane, List<Order> productionOrders)
     {
         dFormat = new DateFormatter();
@@ -40,16 +40,16 @@ public class PostItFactory
     }
 
     public void createPostIt()
-    {     
-        if (productionOrders.get(index).getDeptTasks().get(departmentIndex()).getDepartmentName().toLowerCase().equals(currentDept.toLowerCase()) )
+    {
+        if (productionOrders.get(index).getDeptTasks().get(departmentIndex()).getDepartmentName().toLowerCase().equals(currentDept.toLowerCase()))
         {
-        ancPostIt = new AnchorPane();
-        setProgressBar();
-        createAnchorPane();
-        createLabels();
-        createComboBox();
-        createButton();
-        setLabelText(index);
+            ancPostIt = new AnchorPane();
+            setProgressBar();
+            createAnchorPane();
+            createLabels();
+            createComboBox();
+            createButton();
+            setLabelText(index);
         }
         index++;
 
@@ -81,6 +81,7 @@ public class PostItFactory
         Label orderNr = new Label();
         Label startDate = new Label();
         Label endDate = new Label();
+        Label departmentlabel = new Label();
 
         customerName.setLayoutX(120);
         customerName.setLayoutY(120);
@@ -98,7 +99,7 @@ public class PostItFactory
         orderNr.setLayoutX(200);
         orderNr.setLayoutY(70);
         orderNr.setText(productionOrders.get(index).getOrderNumber());
-
+        
         startDate.setLayoutX(120);
         startDate.setLayoutY(208);
         startDate.setText(formattedStartDate);
@@ -106,7 +107,32 @@ public class PostItFactory
         endDate.setLayoutX(462);
         endDate.setLayoutY(208);
         endDate.setText(formattedEndDate);
-        ancPostIt.getChildren().addAll(customerName, delDate, orderNr, startDate, endDate);
+
+        String previousDepartment = getPreviousDepartment();
+
+        departmentlabel.setLayoutX(350);
+        departmentlabel.setLayoutY(85);
+        departmentlabel.getStyleClass().add("label");
+        departmentlabel.setText(previousDepartment);
+        ancPostIt.getChildren().addAll(customerName, delDate, orderNr, startDate, endDate, departmentlabel);
+    }
+
+    private String getPreviousDepartment()
+    {
+        String previousDepartment = "";
+        if (departmentIndex() > 0)
+        {
+            previousDepartment = productionOrders.get(index).getDeptTasks().get(departmentIndex() - 1).getDepartmentName();
+            if (productionOrders.get(index).getDeptTasks().get(departmentIndex()).isFinishedTask())
+            {
+                Label isDone = new Label("Done");
+                isDone.setLayoutX(350);
+                isDone.setLayoutY(85);
+                isDone.getStyleClass().add("label-done");
+                isDone.setTextFill(Color.web("#33ff33"));                
+            }
+        }
+        return previousDepartment;
     }
 
     private int departmentIndex()
@@ -132,7 +158,6 @@ public class PostItFactory
         Label endDatelabel = new Label("End Date:");
         Label actualTimelabel = new Label("Actual Time:");
         Label lastActivelabel = new Label("Last Department Active:");
-        Label departmentlabel = new Label("Department");
 
         customerLabel.setLayoutX(14);
         customerLabel.setLayoutY(120);
@@ -162,11 +187,7 @@ public class PostItFactory
         lastActivelabel.setLayoutY(65);
         lastActivelabel.getStyleClass().add("label-sub-header");
 
-        departmentlabel.setLayoutX(350);
-        departmentlabel.setLayoutY(85);
-        departmentlabel.getStyleClass().add("label");
-
-        ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel, actualTimelabel, lastActivelabel, departmentlabel);
+        ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel, actualTimelabel, lastActivelabel);
     }
 
     private void createAnchorPane()
