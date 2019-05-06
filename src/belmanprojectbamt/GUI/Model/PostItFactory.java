@@ -114,6 +114,7 @@ public class PostItFactory
         departmentlabel.setLayoutY(85);
         departmentlabel.getStyleClass().add("label");
         departmentlabel.setText(previousDepartment);
+        
         ancPostIt.getChildren().addAll(customerName, delDate, orderNr, startDate, endDate, departmentlabel);
     }
 
