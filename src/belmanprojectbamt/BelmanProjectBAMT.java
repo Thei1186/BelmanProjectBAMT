@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -26,7 +27,8 @@ public class BelmanProjectBAMT extends Application
         Scene scene = new Scene(root);
         scene.getStylesheets().add("CascadeStyleSheet.css");
         stage.setScene(scene);
-        stage.setMaximized(true);
+        stage.setFullScreen(true);
+        stage.getIcons().add(new Image("logo.png"));
         stage.show();
     }
 

@@ -34,15 +34,12 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private FlowPane flowPane;
     @FXML
-    private AnchorPane slider;
-    @FXML
     private AnchorPane ancPane;
 
     private PostItFactory pFactory;
 
     private List<Order> productionOrders;
 
-    private int index;
 
     private final BelmanModel belModelInstance = BelmanModel.getInstance();
 
