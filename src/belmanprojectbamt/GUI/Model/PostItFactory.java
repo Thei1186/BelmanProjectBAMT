@@ -5,9 +5,12 @@
  */
 package belmanprojectbamt.GUI.Model;
 
+import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.Order;
 import java.util.List;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -48,7 +51,7 @@ public class PostItFactory
             createAnchorPane();
             createLabels();
             createComboBox();
-            createButton();
+            createButton(index);
             setLabelText(index);
         }
         index++;
@@ -99,7 +102,7 @@ public class PostItFactory
         orderNr.setLayoutX(200);
         orderNr.setLayoutY(70);
         orderNr.setText(productionOrders.get(index).getOrderNumber());
-        
+
         startDate.setLayoutX(120);
         startDate.setLayoutY(208);
         startDate.setText(formattedStartDate);
@@ -114,13 +117,13 @@ public class PostItFactory
         departmentlabel.setLayoutY(85);
         departmentlabel.getStyleClass().add("label");
         departmentlabel.setText(previousDepartment);
-        
+
         ancPostIt.getChildren().addAll(customerName, delDate, orderNr, startDate, endDate, departmentlabel);
     }
 
     private String getPreviousDepartment()
     {
-        String previousDepartment = "";
+        String previousDepartment = "First task";
         if (departmentIndex() > 0)
         {
             previousDepartment = productionOrders.get(index).getDeptTasks().get(departmentIndex() - 1).getDepartmentName();
@@ -130,7 +133,7 @@ public class PostItFactory
                 isDone.setLayoutX(360);
                 isDone.setLayoutY(85);
                 isDone.getStyleClass().add("label-done");
-                isDone.setTextFill(Color.web("#33ff33"));                
+                isDone.setTextFill(Color.web("#33ff33"));
             }
         }
         return previousDepartment;
@@ -139,13 +142,16 @@ public class PostItFactory
     private int departmentIndex()
     {
         int departmentIndex = 0;
-        if (productionOrders.get(index).getDeptTasks().get(0).isFinishedTask() == true)
+        List<DepartmentTask> tempList = productionOrders.get(index).getDeptTasks();
+        for (DepartmentTask departmentTask : tempList)
         {
-            if (productionOrders.get(index).getDeptTasks().size() != departmentIndex + 1)
+            if (departmentTask.isFinishedTask())
             {
-                departmentIndex++;
+                if (tempList.size() != departmentIndex + 1)
+                {
+                    departmentIndex++;
+                }
             }
-
         }
         return departmentIndex;
     }
@@ -212,15 +218,29 @@ public class PostItFactory
 
     }
 
-    private void createButton()
+    private void createButton(int index)
     {
         Button doneButton = new Button();
-
+        int postItIndex = index;
         doneButton.setText("Done");
         doneButton.setLayoutX(498);
         doneButton.setLayoutY(345);
         doneButton.setPrefSize(80, 20);
-
+        doneButton.setOnMouseClicked(event ->
+        {
+            Button b = (Button) event.getSource();
+            List<DepartmentTask> dTasks = productionOrders.get(postItIndex).getDeptTasks();
+            for (DepartmentTask dTask : dTasks)
+            {
+                if (dTask.getDepartmentName().equals(currentDept))
+                {
+                    dTask.setFinishedTask(true);
+                    Alert iAlert = new Alert(Alert.AlertType.INFORMATION, productionOrders.get(postItIndex).getOrderNumber()
+                            + " is set to done for department: " + dTask.getDepartmentName(), ButtonType.OK);
+                    iAlert.showAndWait();
+                }
+            }
+        });
         ancPostIt.getChildren().add(doneButton);
     }
 }
