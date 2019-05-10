@@ -219,7 +219,7 @@ public class PostItFactory
 
     }
 
-    private void createButton(int index)
+    private void createButton(int postItIndex)
     {
         Button doneButton = new Button();
         doneButton.setText("Done");
@@ -234,7 +234,7 @@ public class PostItFactory
                 if (dTask.getDepartmentName().equals(currentDept))
                 {
                     dTask.setFinishedTask(true);
-                    Alert iAlert = new Alert(Alert.AlertType.INFORMATION, productionOrders.get(index).getOrderNumber()
+                    Alert iAlert = new Alert(Alert.AlertType.INFORMATION, productionOrders.get(postItIndex).getOrderNumber()
                             + " is set to done for department: " + dTask.getDepartmentName(), ButtonType.OK);
                     iAlert.showAndWait();
                 }
