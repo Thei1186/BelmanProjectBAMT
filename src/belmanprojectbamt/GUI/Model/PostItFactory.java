@@ -228,7 +228,7 @@ public class PostItFactory
         doneButton.setPrefSize(80, 20);
         doneButton.setOnMouseClicked(event ->
         {
-            List<DepartmentTask> dTasks = productionOrders.get(index).getDeptTasks();
+            List<DepartmentTask> dTasks = productionOrders.get(postItIndex).getDeptTasks();
             for (DepartmentTask dTask : dTasks)
             {
                 if (dTask.getDepartmentName().equals(currentDept))
