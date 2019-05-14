@@ -6,7 +6,7 @@
 package belmanprojectbamt.GUI.Model;
 
 import belmanprojectbamt.BE.DepartmentTask;
-import belmanprojectbamt.BE.Order;
+import belmanprojectbamt.BE.ProductionOrder;
 import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -31,12 +31,12 @@ public class PostItFactory
     private FlowPane flowPane;
     private AnchorPane ancPostIt;
 
-    private List<Order> productionOrders;
+    private List<ProductionOrder> productionOrders;
     private int index;
     private DateFormatter dFormat;
     private String currentDept;
 
-    public PostItFactory(FlowPane flowPane, List<Order> productionOrders)
+    public PostItFactory(FlowPane flowPane, List<ProductionOrder> productionOrders)
     {
         dFormat = new DateFormatter();
         this.flowPane = flowPane;
