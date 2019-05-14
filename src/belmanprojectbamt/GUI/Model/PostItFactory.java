@@ -14,11 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 /**
@@ -70,7 +68,7 @@ public class PostItFactory
 //        ProgressBar prgBarActual = new ProgressBar();
 
         prgBarDate.setLayoutX(14);
-        prgBarDate.setLayoutY(305);
+        prgBarDate.setLayoutY(260);
         prgBarDate.setProgress(0.4);
         prgBarDate.setPrefSize(565, 24);
 
@@ -109,11 +107,11 @@ public class PostItFactory
         orderNr.setText(productionOrders.get(index).getOrderNumber());
 
         startDate.setLayoutX(120);
-        startDate.setLayoutY(273);
+        startDate.setLayoutY(220);
         startDate.setText(formattedStartDate);
 
         endDate.setLayoutX(462);
-        endDate.setLayoutY(273);
+        endDate.setLayoutY(220);
         endDate.setText(formattedEndDate);
 
         String previousDepartment = getPreviousDepartment();
@@ -185,11 +183,11 @@ public class PostItFactory
         delDatelabel.getStyleClass().add("label-sub-header");
 
         startDatelabel.setLayoutX(14);
-        startDatelabel.setLayoutY(273);
+        startDatelabel.setLayoutY(220);
         startDatelabel.getStyleClass().add("label-sub-header");
 
         endDatelabel.setLayoutX(365);
-        endDatelabel.setLayoutY(273);
+        endDatelabel.setLayoutY(220);
         endDatelabel.getStyleClass().add("label-sub-header");
 
 //        actualTimelabel.setLayoutX(14);
@@ -252,11 +250,11 @@ public class PostItFactory
 
     private void createVBox()
     {
-        VBox vbox = new VBox();
+        HBox hbox = new HBox();
         
-        vbox.setLayoutX(478);
-        vbox.setLayoutY(20);
-        vbox.setAlignment(Pos.CENTER_RIGHT);
+        hbox.setLayoutX(14);
+        hbox.setLayoutY(305);
+        hbox.setAlignment(Pos.CENTER_RIGHT);
 //        vbox.setSpacing(5);
         
         Label dep1 = new Label("Halvfab");
@@ -295,8 +293,8 @@ public class PostItFactory
         dep7.setLayoutY(260);
         dep7.getStyleClass().add("label-dep");
         
-        vbox.getChildren().addAll(dep1, dep2, dep3, dep4, dep5, dep6, dep7);
+        hbox.getChildren().addAll(dep1, dep2, dep3, dep4, dep5, dep6, dep7);
         
-        ancPostIt.getChildren().add(vbox);
+        ancPostIt.getChildren().add(hbox);
     }
 }
