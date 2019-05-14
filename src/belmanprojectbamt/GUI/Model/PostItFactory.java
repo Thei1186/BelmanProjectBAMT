@@ -47,7 +47,8 @@ public class PostItFactory
 
     public void createPostIt()
     {
-        if (productionOrders.get(index).getDeptTasks().get(departmentIndex()).getDepartmentName().toLowerCase().equals(currentDept.toLowerCase()))
+        if (productionOrders.get(index).getDeptTasks().get(departmentIndex())
+                .getDepartmentName().toLowerCase().equals(currentDept.toLowerCase()))
         {
             ancPostIt = new AnchorPane();
             setProgressBar();
@@ -225,17 +226,15 @@ public class PostItFactory
 //
 //    }
 
-    private void createButton(int index)
+    private void createButton(int postItIndex)
     {
         Button doneButton = new Button();
-        int postItIndex = index;
         doneButton.setText("Done");
         doneButton.setLayoutX(498);
         doneButton.setLayoutY(345);
         doneButton.setPrefSize(80, 20);
         doneButton.setOnMouseClicked(event ->
         {
-            Button b = (Button) event.getSource();
             List<DepartmentTask> dTasks = productionOrders.get(postItIndex).getDeptTasks();
             for (DepartmentTask dTask : dTasks)
             {

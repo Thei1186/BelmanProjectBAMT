@@ -24,3 +24,4 @@ hs_err_pid*
 /dist/
 /build/
 data.json
+Database_Settings.txt
