@@ -6,7 +6,7 @@
 package belmanprojectbamt.BLL;
 
 import belmanprojectbamt.BE.DepartmentTask;
-import belmanprojectbamt.BE.Order;
+import belmanprojectbamt.BE.ProductionOrder;
 import java.util.List;
 
 /**
@@ -20,6 +20,6 @@ public interface LogicInterface
      * @return
      * @throws java.lang.Exception
      */
-    public List<Order> getProductionOrder() throws Exception;
+    public List<ProductionOrder> getProductionOrder() throws Exception;
     
 }

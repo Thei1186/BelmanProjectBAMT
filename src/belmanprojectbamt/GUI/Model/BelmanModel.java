@@ -6,7 +6,7 @@
 package belmanprojectbamt.GUI.Model;
 
 import belmanprojectbamt.BE.DepartmentTask;
-import belmanprojectbamt.BE.Order;
+import belmanprojectbamt.BE.ProductionOrder;
 import belmanprojectbamt.BLL.BelmanManager;
 import belmanprojectbamt.BLL.LogicInterface;
 import belmanprojectbamt.DAL.Facade;
@@ -26,7 +26,7 @@ public class BelmanModel
     private static BelmanModel bModelInstance;
     private LogicInterface bManager;
     
-    private ObservableList<Order> productionOrders;
+    private ObservableList<ProductionOrder> productionOrders;
 
 
     private BelmanModel()
@@ -57,7 +57,7 @@ public class BelmanModel
      *
      * @return
      */
-    public ObservableList<Order> getProductionOrder()
+    public ObservableList<ProductionOrder> getProductionOrder()
     {
         try {
             return productionOrders;

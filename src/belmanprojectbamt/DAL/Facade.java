@@ -6,7 +6,7 @@
 package belmanprojectbamt.DAL;
 
 import belmanprojectbamt.BE.DepartmentTask;
-import belmanprojectbamt.BE.Order;
+import belmanprojectbamt.BE.ProductionOrder;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class Facade implements IFacade
     }
     
     @Override
-    public List<Order> getProductionOrder() throws Exception
+    public List<ProductionOrder> getProductionOrder() throws Exception
     {
         return fDAO.getProductionOrders();
     }

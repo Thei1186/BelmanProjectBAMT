@@ -6,7 +6,7 @@
 package belmanprojectbamt.GUI.Controller;
 
 import belmanprojectbamt.BE.DepartmentTask;
-import belmanprojectbamt.BE.Order;
+import belmanprojectbamt.BE.ProductionOrder;
 import belmanprojectbamt.GUI.Model.BelmanModel;
 import belmanprojectbamt.GUI.Model.PostItFactory;
 import java.net.URL;
@@ -38,7 +38,7 @@ public class FXMLDocumentController implements Initializable
 
     private PostItFactory pFactory;
 
-    private List<Order> productionOrders;
+    private List<ProductionOrder> productionOrders;
 
 
     private final BelmanModel belModelInstance = BelmanModel.getInstance();

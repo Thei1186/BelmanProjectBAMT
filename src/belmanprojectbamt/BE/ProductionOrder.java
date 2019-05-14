@@ -13,21 +13,32 @@ import java.util.List;
  *
  * @author Theis
  */
-public class Order
+public class ProductionOrder
 {
+  private int id;
   private String orderNumber;
   private String customerName;
   private Date deliveryDate;
   private List<DepartmentTask> deptTasks;
   
 
-    public Order(String orderNumber, String customerName, Date deliveryDate)
+    public ProductionOrder(String orderNumber, String customerName, Date deliveryDate)
     {
         this.orderNumber = orderNumber;
         this.customerName = customerName;
         this.deliveryDate = deliveryDate;
         this.deptTasks = new ArrayList<>();
     }
+
+    public ProductionOrder(int id, String orderNumber, String customerName, Date deliveryDate, List<DepartmentTask> deptTasks)
+    {
+        this.id = id;
+        this.orderNumber = orderNumber;
+        this.customerName = customerName;
+        this.deliveryDate = deliveryDate;
+        this.deptTasks = deptTasks;
+    }
+    
 
     public String getOrderNumber()
     {
@@ -73,5 +84,10 @@ public class Order
     public void setDeptTasks(List<DepartmentTask> deptTasks)
     {
         this.deptTasks = deptTasks;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 }

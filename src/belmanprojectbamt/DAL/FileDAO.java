@@ -6,7 +6,7 @@
 package belmanprojectbamt.DAL;
 
 import belmanprojectbamt.BE.DepartmentTask;
-import belmanprojectbamt.BE.Order;
+import belmanprojectbamt.BE.ProductionOrder;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,7 +25,7 @@ import org.json.simple.parser.ParseException;
 public class FileDAO
 {
 
-    private List<Order> productionOrders;
+    private List<ProductionOrder> productionOrders;
     private List<DepartmentTask> departmentTasks;
 
     public FileDAO()
@@ -34,7 +34,7 @@ public class FileDAO
         departmentTasks = new ArrayList<>();
     }
 
-    public List<Order> getProductionOrders() throws FileNotFoundException, IOException, ParseException
+    public List<ProductionOrder> getProductionOrders() throws FileNotFoundException, IOException, ParseException
     {
         Object obj = new JSONParser().parse(new FileReader("Data.json"));
 
@@ -54,7 +54,7 @@ public class FileDAO
             JSONObject deliveryObject = (JSONObject) oObject.get("Delivery");
             String sDate = (String) deliveryObject.get("DeliveryTime");
             Date deliveryDate = formatDateString(sDate);
-            Order order = new Order(orderNum, customerName, deliveryDate);
+            ProductionOrder order = new ProductionOrder(orderNum, customerName, deliveryDate);
             
             JSONArray dTaskArray = (JSONArray) oObject.get("DepartmentTasks");            
             for (Object object1 : dTaskArray)

@@ -6,7 +6,7 @@
 package belmanprojectbamt.BLL;
 
 import belmanprojectbamt.BE.DepartmentTask;
-import belmanprojectbamt.BE.Order;
+import belmanprojectbamt.BE.ProductionOrder;
 import belmanprojectbamt.DAL.IFacade;
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class BelmanManager implements LogicInterface
     }
 
     @Override
-    public List<Order> getProductionOrder() throws Exception
+    public List<ProductionOrder> getProductionOrder() throws Exception
     {
         return belDao.getProductionOrder();
     }
