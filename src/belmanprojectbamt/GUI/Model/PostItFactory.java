@@ -244,7 +244,7 @@ public class PostItFactory
                 {
                     dTask.setFinishedTask(true);
                     Alert iAlert = new Alert(Alert.AlertType.INFORMATION, productionOrders.get(postItIndex).getOrderNumber()
-                            + " is set to done for department: " + dTask.getDepartmentName(), ButtonType.OK);
+                            + " is set to done for department: " + dTask.getDepartmentName(), ButtonType.CANCEL, ButtonType.OK);
                     iAlert.showAndWait();
                 }
             }
