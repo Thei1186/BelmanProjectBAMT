@@ -8,6 +8,7 @@ package belmanprojectbamt.GUI.Model;
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
 import java.util.List;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,6 +16,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -205,7 +209,7 @@ public class PostItFactory
 
     private void createAnchorPane()
     {
-        ancPostIt.setPrefSize(570, 390);
+        ancPostIt.setPrefSize(570, 410);
         ancPostIt.getStyleClass().add("anchorpane");
 
         flowPane.getChildren().add(ancPostIt);
@@ -229,7 +233,7 @@ public class PostItFactory
         Button doneButton = new Button();
         doneButton.setText("Done");
         doneButton.setLayoutX(498);
-        doneButton.setLayoutY(345);
+        doneButton.setLayoutY(360);
         doneButton.setPrefSize(80, 20);
         doneButton.setOnMouseClicked(event ->
         {
@@ -267,14 +271,17 @@ public class PostItFactory
         
         dep1.setLayoutX(505);
         dep1.setLayoutY(20);
+        dep1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         dep1.getStyleClass().add("label-dep");
         
         dep2.setLayoutX(525);
         dep2.setLayoutY(60);
+        dep2.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         dep2.getStyleClass().add("label-dep");
         
         dep3.setLayoutX(478);
         dep3.setLayoutY(100);
+        dep3.setBackground(new Background(new BackgroundFill(Color.web("#ffcc00"), CornerRadii.EMPTY, Insets.EMPTY)));
         dep3.getStyleClass().add("label-dep");
         
         dep4.setLayoutX(480);
@@ -283,6 +290,7 @@ public class PostItFactory
         
         dep5.setLayoutX(500);
         dep5.setLayoutY(180);
+        dep5.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         dep5.getStyleClass().add("label-dep");
         
         dep6.setLayoutX(500);

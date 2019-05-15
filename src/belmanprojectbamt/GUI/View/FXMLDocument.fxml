@@ -15,7 +15,7 @@
       </ImageView>
       <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="163.0" prefHeight="721.0" prefWidth="1373.0" style="-fx-background-color: #dddddd;" styleClass="scrollpane" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="163.0">
          <content>
-            <FlowPane fx:id="flowPane" prefHeight="800.0" prefWidth="1354.0" style="-fx-background-color: #dddddd;" />
+            <FlowPane fx:id="flowPane" prefHeight="835.0" prefWidth="1354.0" style="-fx-background-color: #dddddd;" />
          </content>
       </ScrollPane>
    </children>
