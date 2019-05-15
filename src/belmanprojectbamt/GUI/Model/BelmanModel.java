@@ -11,6 +11,7 @@ import belmanprojectbamt.BLL.BelmanManager;
 import belmanprojectbamt.BLL.LogicInterface;
 import belmanprojectbamt.DAL.Facade;
 import belmanprojectbamt.DAL.IFacade;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -29,7 +30,7 @@ public class BelmanModel
     private ObservableList<ProductionOrder> productionOrders;
 
 
-    private BelmanModel()
+    private BelmanModel() throws IOException
     {
         bModelInstance = null;
         IFacade bFacade = new Facade();
@@ -44,7 +45,7 @@ public class BelmanModel
          
     }
 
-    public static BelmanModel getInstance()
+    public static BelmanModel getInstance() throws IOException
     {
         if (bModelInstance == null)
         {

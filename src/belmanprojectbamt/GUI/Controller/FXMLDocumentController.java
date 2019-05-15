@@ -7,8 +7,11 @@ package belmanprojectbamt.GUI.Controller;
 
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
+import belmanprojectbamt.DAL.FileDAO;
 import belmanprojectbamt.GUI.Model.BelmanModel;
 import belmanprojectbamt.GUI.Model.PostItFactory;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,8 +43,12 @@ public class FXMLDocumentController implements Initializable
 
     private List<ProductionOrder> productionOrders;
 
+    private final BelmanModel belModelInstance;
 
-    private final BelmanModel belModelInstance = BelmanModel.getInstance();
+    public FXMLDocumentController() throws IOException
+    {
+        this.belModelInstance = BelmanModel.getInstance();
+    }
 
     /**
      * Initializes the controller class.
@@ -55,7 +62,6 @@ public class FXMLDocumentController implements Initializable
         productionOrders = belModelInstance.getProductionOrder();
 
         pFactory = new PostItFactory(flowPane, productionOrders);
-
         handlePostIts();
 
         flowPane.setVgap(6);
@@ -65,26 +71,28 @@ public class FXMLDocumentController implements Initializable
 
     public void handlePostIts()
     {
-        AtomicInteger runCount = new AtomicInteger();
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        Runnable task = () ->
+        if (productionOrders.size() > 0)
         {
-            generatePostIt();
-            runCount.incrementAndGet();
-            if (runCount.get() >= productionOrders.size())
+            AtomicInteger runCount = new AtomicInteger();
+            ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+            Runnable task = () ->
             {
-                executor.shutdownNow();
-            }
-        };
-        executor.scheduleWithFixedDelay(task, 0, 200, TimeUnit.MILLISECONDS);
-
+                generatePostIt();
+                runCount.incrementAndGet();
+                if (runCount.get() >= productionOrders.size())
+                {
+                    executor.shutdownNow();
+                }
+            };
+            executor.scheduleWithFixedDelay(task, 0, 200, TimeUnit.MILLISECONDS);
+        }
     }
 
     public void generatePostIt()
     {
         Platform.runLater(() ->
         {
-        pFactory.createPostIt();   
+            pFactory.createPostIt();
         });
     }
 
