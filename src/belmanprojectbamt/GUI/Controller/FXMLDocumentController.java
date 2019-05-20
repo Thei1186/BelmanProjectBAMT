@@ -19,6 +19,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,7 +63,14 @@ public class FXMLDocumentController implements Initializable
     {
         productionOrders = belModelInstance.getProductionOrder();
 
-        pFactory = new PostItFactory(flowPane, productionOrders);
+        try
+        {
+            pFactory = new PostItFactory(flowPane, productionOrders);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         handlePostIts();
 
         flowPane.setVgap(6);

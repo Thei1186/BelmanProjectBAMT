@@ -22,4 +22,9 @@ public interface LogicInterface
      */
     public List<ProductionOrder> getProductionOrder() throws Exception;
     
+    /**
+     *
+     * @param task
+     */
+    public void setTaskAsDone(DepartmentTask task);
 }

@@ -30,6 +30,12 @@ public class BelmanManager implements LogicInterface
         return belDao.getProductionOrder();
     }
 
+    @Override
+    public void setTaskAsDone(DepartmentTask task)
+    {
+        belDao.setTaskAsDone(task);
+    }
+
    
 
 }

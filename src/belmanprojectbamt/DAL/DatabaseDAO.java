@@ -88,13 +88,13 @@ public class DatabaseDAO
                 List<DepartmentTask> deptTasks = new ArrayList<>();
                 ProductionOrder order = new ProductionOrder(id, orderNumber, customerName, deliveryDate, deptTasks);
 
-                PreparedStatement pstmt1 = con.prepareStatement("SELECT * FROM DepartmentTask WHERE Id = (?)");
+                PreparedStatement pstmt1 = con.prepareStatement("SELECT * FROM DepartmentTask WHERE ProdId = (?)");
                 pstmt1.setInt(1, id);
                 ResultSet rs1 = pstmt1.executeQuery();
 
                 while (rs1.next())
                 {
-                    int deptId = rs1.getInt("Id");
+                    int deptId = rs1.getInt("ProdId");
                     String DepartmentName = rs1.getString("DepartmentName");
                     Date startDate = rs1.getDate("StartDate");
                     Date endDate = rs1.getDate("EndDate");
@@ -119,9 +119,9 @@ public class DatabaseDAO
     {
         try (Connection con = ds.getConnection())
         {
-            PreparedStatement pstmt = con.prepareStatement("UPDATE DepartmentTask Set FinishedTask = (?) WHERE Id = (?) AND DepartmentName = (?)");
+            PreparedStatement pstmt = con.prepareStatement("UPDATE DepartmentTask Set FinishedTask = (?) WHERE ProdId = (?) AND DepartmentName = (?)");
             pstmt.setBoolean(1, true);
-            pstmt.setInt(2, task.getId());
+            pstmt.setInt(2, task.getProdId());
             pstmt.setString(3, task.getDepartmentName());
 
             pstmt.execute();

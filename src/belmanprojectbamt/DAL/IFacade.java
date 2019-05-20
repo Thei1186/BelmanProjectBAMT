@@ -23,4 +23,5 @@ public interface IFacade
      */
     public List<ProductionOrder> getProductionOrder() throws Exception;
     
+    public void setTaskAsDone(DepartmentTask task);
 }

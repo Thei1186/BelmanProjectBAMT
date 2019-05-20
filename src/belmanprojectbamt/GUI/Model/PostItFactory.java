@@ -7,6 +7,7 @@ package belmanprojectbamt.GUI.Model;
 
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
+import java.io.IOException;
 import java.util.List;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -37,9 +38,11 @@ public class PostItFactory
     private int index;
     private DateFormatter dFormat;
     private String currentDept;
+    private final BelmanModel belModelInstance;
 
-    public PostItFactory(FlowPane flowPane, List<ProductionOrder> productionOrders)
+    public PostItFactory(FlowPane flowPane, List<ProductionOrder> productionOrders) throws IOException
     {
+        belModelInstance = BelmanModel.getInstance();
         dFormat = new DateFormatter();
         this.flowPane = flowPane;
         this.productionOrders = productionOrders;
@@ -80,7 +83,6 @@ public class PostItFactory
 //        prgBarActual.setLayoutY(305);
 //        prgBarActual.setProgress(0.6);
 //        prgBarActual.setPrefSize(565, 24);
-
         ancPostIt.getChildren().addAll(prgBarDate);
     }
 
@@ -173,7 +175,6 @@ public class PostItFactory
 //        Label actualTimelabel = new Label("Actual Time:");
 //        Label lastActivelabel = new Label("Last Department Active:");
 
-
         customerLabel.setLayoutX(14);
         customerLabel.setLayoutY(120);
         customerLabel.getStyleClass().add("label-sub-header");
@@ -197,13 +198,9 @@ public class PostItFactory
 //        actualTimelabel.setLayoutX(14);
 //        actualTimelabel.setLayoutY(275);
 //        actualTimelabel.getStyleClass().add("label-sub-header");
-
 //        lastActivelabel.setLayoutX(350);
 //        lastActivelabel.setLayoutY(65);
 //        lastActivelabel.getStyleClass().add("label-sub-header");
-
-
-
         ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel);
     }
 
@@ -227,7 +224,7 @@ public class PostItFactory
 //        ancPostIt.getChildren().add(comboDept);
 //
 //    }
-
+    
     private void createButton(int postItIndex)
     {
         Button doneButton = new Button();
@@ -242,7 +239,7 @@ public class PostItFactory
             {
                 if (dTask.getDepartmentName().equals(currentDept))
                 {
-                    dTask.setFinishedTask(true);
+                    belModelInstance.setTaskAsDone(dTask);
                     Alert iAlert = new Alert(Alert.AlertType.INFORMATION, productionOrders.get(postItIndex).getOrderNumber()
                             + " is set to done for department: " + dTask.getDepartmentName(), ButtonType.CANCEL, ButtonType.OK);
                     iAlert.showAndWait();
@@ -255,12 +252,12 @@ public class PostItFactory
     private void createVBox()
     {
         HBox hbox = new HBox();
-        
+
         hbox.setLayoutX(14);
         hbox.setLayoutY(305);
         hbox.setAlignment(Pos.CENTER_RIGHT);
 //        vbox.setSpacing(5);
-        
+
         Label dep1 = new Label("Halvfab");
         Label dep2 = new Label("Bælg");
         Label dep3 = new Label("Montage 1");
@@ -268,41 +265,41 @@ public class PostItFactory
         Label dep5 = new Label("Bertel");
         Label dep6 = new Label("Maler");
         Label dep7 = new Label("Forsendelse");
-        
+
         dep1.setLayoutX(505);
         dep1.setLayoutY(20);
         dep1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         dep1.getStyleClass().add("label-dep");
-        
+
         dep2.setLayoutX(525);
         dep2.setLayoutY(60);
         dep2.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         dep2.getStyleClass().add("label-dep");
-        
+
         dep3.setLayoutX(478);
         dep3.setLayoutY(100);
         dep3.setBackground(new Background(new BackgroundFill(Color.web("#ffcc00"), CornerRadii.EMPTY, Insets.EMPTY)));
         dep3.getStyleClass().add("label-dep");
-        
+
         dep4.setLayoutX(480);
         dep4.setLayoutY(140);
         dep4.getStyleClass().add("label-dep");
-        
+
         dep5.setLayoutX(500);
         dep5.setLayoutY(180);
         dep5.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         dep5.getStyleClass().add("label-dep");
-        
+
         dep6.setLayoutX(500);
         dep6.setLayoutY(220);
         dep6.getStyleClass().add("label-dep");
-        
+
         dep7.setLayoutX(500);
         dep7.setLayoutY(260);
         dep7.getStyleClass().add("label-dep");
-        
+
         hbox.getChildren().addAll(dep1, dep2, dep3, dep4, dep5, dep6, dep7);
-        
+
         ancPostIt.getChildren().add(hbox);
     }
 }

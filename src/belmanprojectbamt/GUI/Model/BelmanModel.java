@@ -67,5 +67,10 @@ public class BelmanModel
         }
         return null;
     }
+    
+    public void setTaskAsDone(DepartmentTask task)
+    {
+        bManager.setTaskAsDone(task);
+    }
 
 }

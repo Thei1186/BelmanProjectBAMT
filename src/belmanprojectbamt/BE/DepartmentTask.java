@@ -14,15 +14,18 @@ import java.util.Date;
 public class DepartmentTask
 {
     
-    private int id;
+    private int prodId;
     private String departmentName;
     private Date startDate;
     private Date endDate;
     private int timeOffset;
     private boolean finishedTask;
 
-    public DepartmentTask(String departmentName, Date startDate, Date endDate, int timeOffset, boolean finishedTask)
+
+
+    public DepartmentTask(int prodId, String departmentName, Date startDate, Date endDate, int timeOffset, boolean finishedTask)
     {
+        this.prodId = prodId;
         this.departmentName = departmentName;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -30,15 +33,7 @@ public class DepartmentTask
         this.finishedTask = finishedTask;
     }
 
-    public DepartmentTask(int id, String departmentName, Date startDate, Date endDate, int timeOffset, boolean finishedTask)
-    {
-        this.id = id;
-        this.departmentName = departmentName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.timeOffset = timeOffset;
-        this.finishedTask = finishedTask;
-    }
+   
     
     public String getDepartmentName()
     {
@@ -97,9 +92,11 @@ public class DepartmentTask
         this.finishedTask = finishedTask;
     }
 
-    public int getId()
+    public int getProdId()
     {
-        return id;
+        return prodId;
     }
+
+   
 
 }

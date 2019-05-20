@@ -5,6 +5,7 @@
  */
 package belmanprojectbamt.DAL;
 
+import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
 import java.io.IOException;
 import java.util.List;
@@ -15,20 +16,25 @@ import java.util.List;
  */
 public class Facade implements IFacade
 {
+
     FileDAO fDAO;
     DatabaseDAO dDAO;
-
+    
     public Facade() throws IOException
     {
-        fDAO = new FileDAO();
         dDAO = new DatabaseDAO();
     }
-
+    
     @Override
     public List<ProductionOrder> getProductionOrder() throws Exception
     {
         return dDAO.getProductionOrders();
-//        return fDAO.getProductionOrders();
     }
-
+    
+    @Override
+    public void setTaskAsDone(DepartmentTask task)
+    {
+        dDAO.setTaskAsDone(task);
+    }
+    
 }
