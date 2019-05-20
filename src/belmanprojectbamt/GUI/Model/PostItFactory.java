@@ -62,7 +62,7 @@ public class PostItFactory
 //            createComboBox();
             createButton(index);
             setLabelText(index);
-            createVBox();
+            createHBox();
         }
         index++;
 
@@ -240,8 +240,8 @@ public class PostItFactory
                 if (dTask.getDepartmentName().equals(currentDept))
                 {
                     belModelInstance.setTaskAsDone(dTask);
-                    Alert iAlert = new Alert(Alert.AlertType.INFORMATION, productionOrders.get(postItIndex).getOrderNumber()
-                            + " is set to done for department: " + dTask.getDepartmentName(), ButtonType.CANCEL, ButtonType.OK);
+                    Alert iAlert = new Alert(Alert.AlertType.CONFIRMATION, productionOrders.get(postItIndex).getOrderNumber()
+                            + " is set to done for department: " + dTask.getDepartmentName());
                     iAlert.showAndWait();
                 }
             }
@@ -249,14 +249,13 @@ public class PostItFactory
         ancPostIt.getChildren().add(doneButton);
     }
 
-    private void createVBox()
+    private void createHBox()
     {
         HBox hbox = new HBox();
 
         hbox.setLayoutX(14);
         hbox.setLayoutY(305);
         hbox.setAlignment(Pos.CENTER_RIGHT);
-//        vbox.setSpacing(5);
 
         Label dep1 = new Label("Halvfab");
         Label dep2 = new Label("Bælg");
