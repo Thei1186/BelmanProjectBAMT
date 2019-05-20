@@ -1,2 +1,2 @@
-Department = "Halvfab"
-offset = 0
+Department = Halvfab
+TimeOffset = 0
