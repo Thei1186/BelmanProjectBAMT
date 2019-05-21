@@ -101,7 +101,7 @@ public class PostItFactory
         prgBarDate.setLayoutX(14);
         prgBarDate.setLayoutY(260);
         prgBarDate.setProgress(0.4);
-        prgBarDate.setPrefSize(565, 24);
+        prgBarDate.setPrefSize(562, 24);
 
 //        prgBarActual.setLayoutX(14);
 //        prgBarActual.setLayoutY(305);
@@ -291,6 +291,7 @@ public class PostItFactory
 
         dep1.setLayoutX(505);
         dep1.setLayoutY(20);
+        dep1.setPadding(new Insets(20));
         dep1.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         dep1.getStyleClass().add("label-dep");
 
