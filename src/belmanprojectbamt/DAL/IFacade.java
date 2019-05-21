@@ -23,5 +23,21 @@ public interface IFacade
      */
     public List<ProductionOrder> getProductionOrder() throws Exception;
     
+    /**
+     *
+     * @param task
+     */
     public void setTaskAsDone(DepartmentTask task);
+    
+    /**
+     *
+     * @return
+     */
+    public String getDepartmentName();
+    
+    /**
+     *
+     * @return
+     */
+    public int getOffSet();
 }

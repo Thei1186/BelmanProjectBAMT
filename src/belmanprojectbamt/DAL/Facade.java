@@ -17,12 +17,13 @@ import java.util.List;
 public class Facade implements IFacade
 {
 
-    FileDAO fDAO;
+    ConfigReader cReader;
     DatabaseDAO dDAO;
     
     public Facade() throws IOException
     {
         dDAO = new DatabaseDAO();
+        cReader = new ConfigReader();
     }
     
     @Override
@@ -35,6 +36,18 @@ public class Facade implements IFacade
     public void setTaskAsDone(DepartmentTask task)
     {
         dDAO.setTaskAsDone(task);
+    }
+
+    @Override
+    public String getDepartmentName()
+    {
+        return cReader.getDepartmentName();
+    }
+
+    @Override
+    public int getOffSet()
+    {
+        return cReader.getOffSet();
     }
     
 }

@@ -36,6 +36,17 @@ public class BelmanManager implements LogicInterface
         belDao.setTaskAsDone(task);
     }
 
-   
+    @Override
+    public String getDepartmentName()
+    {
+        return belDao.getDepartmentName();
+    }
+    
+    @Override
+    public int getOffSet()
+    {
+        return belDao.getOffSet();
+    }
+
 
 }

@@ -72,5 +72,15 @@ public class BelmanModel
     {
         bManager.setTaskAsDone(task);
     }
+ 
+    public String getDepartmentName()
+    {
+        return bManager.getDepartmentName();
+    }
+  
+    public int getOffSet()
+    {
+        return bManager.getOffSet();
+    }
 
 }

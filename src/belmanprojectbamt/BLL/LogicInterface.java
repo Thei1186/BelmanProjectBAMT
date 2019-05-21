@@ -27,4 +27,16 @@ public interface LogicInterface
      * @param task
      */
     public void setTaskAsDone(DepartmentTask task);
+
+    /**
+     *
+     * @return
+     */
+    public int getOffSet();
+    
+    /**
+     *
+     * @return
+     */
+    public String getDepartmentName();
 }

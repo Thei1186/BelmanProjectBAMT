@@ -8,7 +8,10 @@ package belmanprojectbamt.GUI.Model;
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -38,6 +41,7 @@ public class PostItFactory
     private int index;
     private DateFormatter dFormat;
     private String currentDept;
+    private int timeOffset;
     private final BelmanModel belModelInstance;
 
     public PostItFactory(FlowPane flowPane, List<ProductionOrder> productionOrders) throws IOException
@@ -47,13 +51,13 @@ public class PostItFactory
         this.flowPane = flowPane;
         this.productionOrders = productionOrders;
         this.index = 0;
-        this.currentDept = "Halvfab";
+        this.currentDept = belModelInstance.getDepartmentName();
+        this.timeOffset = belModelInstance.getOffSet();
     }
 
     public void createPostIt()
     {
-        if (productionOrders.get(index).getDeptTasks().get(departmentIndex())
-                .getDepartmentName().toLowerCase().equals(currentDept.toLowerCase()))
+        if (checkIfPostItReady())
         {
             ancPostIt = new AnchorPane();
             setProgressBar();
@@ -67,6 +71,26 @@ public class PostItFactory
         index++;
 
 //        return ancPostIt;
+    }
+    
+    private DepartmentTask getDeptTask()
+    {
+      return productionOrders.get(index).getDeptTasks().get(departmentIndex());
+    }
+    
+    private boolean getCurrentDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        Long timeOffsetInMilli = TimeUnit.DAYS.toMillis(timeOffset);
+        Long curDateMilli = cal.getTimeInMillis();
+        
+        return curDateMilli >= (getDeptTask().getStartDate().getTime() + timeOffsetInMilli);
+    }
+    
+    private boolean checkIfPostItReady()
+    {
+        return getCurrentDate() &&
+                getDeptTask().getDepartmentName().toLowerCase().equals(currentDept.toLowerCase());
     }
 
     private void setProgressBar()

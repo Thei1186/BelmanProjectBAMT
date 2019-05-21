@@ -7,7 +7,7 @@ package belmanprojectbamt.GUI.Controller;
 
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
-import belmanprojectbamt.DAL.FileDAO;
+import belmanprojectbamt.DAL.ConfigReader;
 import belmanprojectbamt.GUI.Model.BelmanModel;
 import belmanprojectbamt.GUI.Model.PostItFactory;
 import java.io.File;
