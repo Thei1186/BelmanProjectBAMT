@@ -42,6 +42,26 @@ and open the template in the editor.
     -fx-font-weight: bold;
 }
 
+.label-done
+{
+    -fx-background-color: green;
+}
+
+.label-ongoing
+{
+    -fx-background-color: #ffcc00;
+}
+
+.label-late
+{
+    -fx-background-color: red;
+}
+
+.label-irrelevant
+{
+    -fx-background-color: gray;
+}
+
 .anchorpane
 {
     -fx-padding: 10px;
