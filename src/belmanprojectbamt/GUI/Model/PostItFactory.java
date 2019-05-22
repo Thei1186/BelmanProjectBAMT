@@ -8,7 +8,6 @@ package belmanprojectbamt.GUI.Model;
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -115,7 +114,6 @@ public class PostItFactory
         
         prgBarDate.setLayoutX(14);
         prgBarDate.setLayoutY(260);
-//        prgBarDate.setProgress(0.4);
         prgBarDate.setPrefSize(562, 24);
         
         ancPostIt.getChildren().addAll(prgBarDate);
