@@ -10,6 +10,7 @@ import belmanprojectbamt.BE.ProductionOrder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javafx.geometry.Insets;
@@ -114,10 +115,14 @@ public class PostItFactory
         
         prgBarDate.setLayoutX(14);
         prgBarDate.setLayoutY(260);
-        prgBarDate.setProgress(0.4);
+//        prgBarDate.setProgress(0.4);
         prgBarDate.setPrefSize(562, 24);
         
         ancPostIt.getChildren().addAll(prgBarDate);
+        
+        Date startDate = getDeptTask().getStartDate();
+        Date endDate = getDeptTask().getEndDate();
+        prgBarDate.setProgress(belModelInstance.getProgressBarData(startDate, endDate));
     }
 
     /**

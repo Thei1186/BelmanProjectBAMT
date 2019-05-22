@@ -7,6 +7,7 @@ package belmanprojectbamt.BLL;
 
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,4 +40,12 @@ public interface LogicInterface
      * @return
      */
     public String getDepartmentName();
+    
+    /**
+     * 
+     * @param startDate
+     * @param endDate
+     * @return 
+     */
+    public double getProgressBarData(Date startDate, Date endDate);
 }

@@ -12,6 +12,7 @@ import belmanprojectbamt.BLL.LogicInterface;
 import belmanprojectbamt.DAL.Facade;
 import belmanprojectbamt.DAL.IFacade;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -81,6 +82,11 @@ public class BelmanModel
     public int getOffSet()
     {
         return bManager.getOffSet();
+    }
+    
+    public double getProgressBarData(Date startDate, Date endDate)
+    {
+        return bManager.getProgressBarData(startDate, endDate);
     }
 
 }

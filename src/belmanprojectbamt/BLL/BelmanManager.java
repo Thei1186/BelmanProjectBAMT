@@ -8,6 +8,7 @@ package belmanprojectbamt.BLL;
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
 import belmanprojectbamt.DAL.IFacade;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,5 +49,20 @@ public class BelmanManager implements LogicInterface
         return belDao.getOffSet();
     }
 
+    @Override
+    public double getProgressBarData(Date startDate, Date endDate)
+    {
+        long startTime = startDate.getTime();
+        long endTime = endDate.getTime();
+        
+        double availableTime = (endTime - startTime)/ (1000 * 60 * 60 * 24);
+        
+        double todayInMillis = System.currentTimeMillis() / (1000 * 60 * 60 * 24);
 
+        double daysSpent = todayInMillis - (startTime / (1000 * 60 * 60 * 24));
+
+        double elapsedTime = daysSpent / availableTime;  
+
+        return elapsedTime;
+    }
 }
