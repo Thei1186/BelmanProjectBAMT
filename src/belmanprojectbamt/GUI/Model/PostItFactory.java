@@ -9,14 +9,12 @@ import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
@@ -63,7 +61,6 @@ public class PostItFactory
             setProgressBar();
             createAnchorPane();
             createLabels();
-//            createComboBox();
             createButton(index);
             setLabelText(index);
             createHBox();
@@ -73,6 +70,11 @@ public class PostItFactory
 //        return ancPostIt;
     }
     
+    /**
+     * Gets Department tasks from production order
+     * 
+     * @return DepartmentTask
+     */
     private DepartmentTask getDeptTask()
     {
       return productionOrders.get(index).getDeptTasks().get(departmentIndex());
@@ -93,23 +95,26 @@ public class PostItFactory
                 getDeptTask().getDepartmentName().toLowerCase().equals(currentDept.toLowerCase());
     }
 
+    /**
+     * Creates progress bar and adds it to anchorpane.
+     */
     private void setProgressBar()
     {
         ProgressBar prgBarDate = new ProgressBar();
-//        ProgressBar prgBarActual = new ProgressBar();
 
         prgBarDate.setLayoutX(14);
         prgBarDate.setLayoutY(260);
         prgBarDate.setProgress(0.4);
         prgBarDate.setPrefSize(562, 24);
 
-//        prgBarActual.setLayoutX(14);
-//        prgBarActual.setLayoutY(305);
-//        prgBarActual.setProgress(0.6);
-//        prgBarActual.setPrefSize(565, 24);
         ancPostIt.getChildren().addAll(prgBarDate);
     }
 
+    /**
+     * Retrieves information and sets it on labels.
+     * 
+     * @param index 
+     */
     private void setLabelText(int index)
     {
         Label customerName = new Label();
@@ -154,6 +159,10 @@ public class PostItFactory
         ancPostIt.getChildren().addAll(customerName, delDate, orderNr, startDate, endDate, departmentlabel);
     }
 
+    /**
+     * 
+     * @return 
+     */
     private String getPreviousDepartment()
     {
         String previousDepartment = "";
@@ -189,6 +198,9 @@ public class PostItFactory
         return departmentIndex;
     }
 
+    /**
+     * Creates labels with static text.
+     */
     private void createLabels()
     {
         Label customerLabel = new Label("Customer:");
@@ -196,8 +208,6 @@ public class PostItFactory
         Label delDatelabel = new Label("Delivery Date:");
         Label startDatelabel = new Label("Start Date:");
         Label endDatelabel = new Label("End Date:");
-//        Label actualTimelabel = new Label("Actual Time:");
-//        Label lastActivelabel = new Label("Last Department Active:");
 
         customerLabel.setLayoutX(14);
         customerLabel.setLayoutY(120);
@@ -219,15 +229,12 @@ public class PostItFactory
         endDatelabel.setLayoutY(220);
         endDatelabel.getStyleClass().add("label-sub-header");
 
-//        actualTimelabel.setLayoutX(14);
-//        actualTimelabel.setLayoutY(275);
-//        actualTimelabel.getStyleClass().add("label-sub-header");
-//        lastActivelabel.setLayoutX(350);
-//        lastActivelabel.setLayoutY(65);
-//        lastActivelabel.getStyleClass().add("label-sub-header");
         ancPostIt.getChildren().addAll(customerLabel, orderLabel, delDatelabel, startDatelabel, endDatelabel);
     }
-
+    
+    /**
+     * Creates anchorPane.
+     */
     private void createAnchorPane()
     {
         ancPostIt.setPrefSize(570, 410);
@@ -235,20 +242,11 @@ public class PostItFactory
 
         flowPane.getChildren().add(ancPostIt);
     }
-
-//    private void createComboBox()
-//    {
-//        ComboBox comboDept = new ComboBox();
-//
-//        comboDept.setPromptText("Departments");
-//        comboDept.setLayoutX(380);
-//        comboDept.setLayoutY(14);
-//        comboDept.setPrefSize(200, 15);
-//
-//        ancPostIt.getChildren().add(comboDept);
-//
-//    }
     
+    /**
+     * Creates done button with confirmation message.
+     * @param postItIndex 
+     */
     private void createButton(int postItIndex)
     {
         Button doneButton = new Button();
@@ -272,7 +270,11 @@ public class PostItFactory
         });
         ancPostIt.getChildren().add(doneButton);
     }
-
+    
+    /**
+     * Creates HBox with department labels
+     * Sets the colour for department progress.
+     */
     private void createHBox()
     {
         HBox hbox = new HBox();
@@ -321,6 +323,12 @@ public class PostItFactory
         dep7.setLayoutX(500);
         dep7.setLayoutY(260);
         dep7.getStyleClass().add("label-dep");
+        
+        if (getDeptTask().getStartDate().before(getDeptTask().getEndDate()))
+            {
+                dep1.setBackground(new Background(new BackgroundFill(Color.web("#ffcc00"), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        
 
         hbox.getChildren().addAll(dep1, dep2, dep3, dep4, dep5, dep6, dep7);
 
