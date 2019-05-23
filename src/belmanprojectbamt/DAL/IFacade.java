@@ -18,26 +18,33 @@ public interface IFacade
 
     /**
      *
-     * @return
-     * @throws java.lang.Exception
+     * @return @throws java.lang.Exception
      */
     public List<ProductionOrder> getProductionOrder() throws Exception;
-    
+
     /**
      *
      * @param task
      */
     public void setTaskAsDone(DepartmentTask task);
-    
+
     /**
      *
      * @return
      */
     public String getDepartmentName();
-    
+
     /**
      *
      * @return
      */
     public int getOffSet();
+
+    /**
+     *
+     * @param pOrder
+     * @param dTask
+     * @param logMessage
+     */
+    public void updateLog(ProductionOrder pOrder, DepartmentTask dTask, String logMessage);
 }
