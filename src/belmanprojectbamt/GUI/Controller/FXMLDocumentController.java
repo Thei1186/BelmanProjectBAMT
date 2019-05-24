@@ -13,6 +13,7 @@ import belmanprojectbamt.GUI.Model.PostItFactory;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
@@ -22,6 +23,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
@@ -43,7 +46,7 @@ public class FXMLDocumentController implements Initializable
 
     private PostItFactory pFactory;
 
-    private List<ProductionOrder> productionOrders;
+    private ObservableList<ProductionOrder> productionOrders;
 
     private final BelmanModel belModelInstance;
 
@@ -61,26 +64,65 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        productionOrders = belModelInstance.getProductionOrder();
-
         try
         {
+            productionOrders = belModelInstance.getProductionOrders();
+            handleGetProductionOrders();
+            handlePostIts();
             pFactory = new PostItFactory(flowPane, productionOrders);
         } catch (Exception ex)
         {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            if (ex instanceof SQLException)
+            {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);                
+            }
         }
 
-        handlePostIts();
-//        updateGUI();
         flowPane.setVgap(6);
         flowPane.setHgap(6);
         flowPane.setOrientation(Orientation.VERTICAL);
     }
 
+    public ObservableList<ProductionOrder> getProductionOrders() throws Exception
+    {
+        ObservableList<ProductionOrder> tempList = belModelInstance.getProductionOrders();
+        if (tempList.size() != productionOrders.size())
+        {
+            flowPane.getChildren().clear();
+            productionOrders = tempList;
+            pFactory = new PostItFactory(flowPane, productionOrders);
+            handlePostIts();
+            return productionOrders;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private void handleGetProductionOrders()
+    {
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        Runnable task = () ->
+        {
+            Platform.runLater(() ->
+            {
+                try
+                {
+                    getProductionOrders();
+                } catch (Exception ex)
+                {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+        };
+        executor.scheduleWithFixedDelay(task, 0, 5, TimeUnit.SECONDS);
+    }
+
     public void handlePostIts()
     {
-        if (productionOrders.size() > 0)
+        if (productionOrders.size() > 0 && productionOrders != null)
         {
             AtomicInteger runCount = new AtomicInteger();
             ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -95,19 +137,6 @@ public class FXMLDocumentController implements Initializable
             };
             executor.scheduleWithFixedDelay(task, 0, 200, TimeUnit.MILLISECONDS);
         }
-    }
-
-    public void updateGUI()
-    {
-        ScheduledExecutorService executor1 = Executors.newScheduledThreadPool(1);
-        Runnable task = () ->
-        {
-            Platform.runLater(() ->
-        {        
-            flowPane.getChildren().clear();
-        });
-        };
-        executor1.scheduleWithFixedDelay(task, 0, 3, TimeUnit.SECONDS);
     }
 
     public void generatePostIt()

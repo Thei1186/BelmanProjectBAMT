@@ -11,12 +11,15 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
@@ -98,6 +101,7 @@ public class PostItFactory
     private boolean checkIfPostItReady()
     {
         return isStartDateReached()
+                && !getDeptTask().isFinishedTask()
                 && getDeptTask().getDepartmentName().toLowerCase().equals(currentDept.toLowerCase());
     }
 
@@ -241,10 +245,18 @@ public class PostItFactory
             {
                 if (dTask.getDepartmentName().equals(currentDept))
                 {
-                    belModelInstance.setTaskAsDone(dTask);
                     Alert iAlert = new Alert(Alert.AlertType.CONFIRMATION, productionOrders.get(postItIndex).getOrderNumber()
                             + " is set to done for department: " + dTask.getDepartmentName());
-                    iAlert.showAndWait();
+
+                    Optional<ButtonType> result = iAlert.showAndWait();
+
+                    if (result.get() == ButtonType.OK)
+                    {
+                        belModelInstance.setTaskAsDone(dTask);
+                        
+                        String logMessage = "DepartmentTask set as done";
+                        belModelInstance.updateLog(productionOrders.get(postItIndex), dTask, logMessage);                        
+                    }
                 }
             }
         });
@@ -271,13 +283,13 @@ public class PostItFactory
         Label dep6 = new Label("Maler");
         Label dep7 = new Label("Forsendelse");
         dep1.setUserData("Halvfab");
-        dep2.setUserData("Bælg");
+        dep2.setUserData("BÃ¦lg");
         dep3.setUserData("Montage 1");
         dep4.setUserData("Montage 2");
         dep5.setUserData("Bertel");
         dep6.setUserData("Maler");
         dep7.setUserData("Forsendelse");
-        
+
         dep1.setLayoutX(505);
         dep1.setLayoutY(20);
         dep1.setPadding(new Insets(20));
@@ -316,24 +328,31 @@ public class PostItFactory
     private void setDeptStatus(HBox hbox)
     {
         List<Node> nodes = hbox.getChildren();
-
-        for (Node node : nodes)
+        List<DepartmentTask> dTasks = productionOrders.get(index).getDeptTasks();
+        for (DepartmentTask dTask : dTasks)
         {
-            System.out.println(node.getUserData());
-            if (getDeptTask().isFinishedTask() )
+            for (Node node : nodes)
             {
-                node.getStyleClass().add("label-done");
-            } else if (!getDeptTask().isFinishedTask() && getDeptTask().getEndDate().getTime() < System.currentTimeMillis())
-            {
-                node.getStyleClass().add("label-late");
-            } else if (false)
-            {
-                node.getStyleClass().add("label-irrelevant");
-            } else if (isStartDateReached() && !getDeptTask().isFinishedTask())
-            {
-                node.getStyleClass().add("label-ongoing");
+                if (dTask.isFinishedTask() && dTask.getDepartmentName().toLowerCase().equals(node.getUserData().toString().toLowerCase()))
+                {
+                    node.getStyleClass().add("label-done");
+                } 
+                else if (!dTask.isFinishedTask() && dTask.getEndDate().getTime() < System.currentTimeMillis()
+                        && dTask.getDepartmentName().toLowerCase().equals(node.getUserData().toString().toLowerCase()))
+                {
+                    node.getStyleClass().add("label-late");
+                }
+                else if (isStartDateReached() && !dTask.isFinishedTask()
+                        && dTask.getDepartmentName().toLowerCase().equals(node.getUserData().toString().toLowerCase()))
+                {
+                    node.getStyleClass().add("label-ongoing");
+                }
+//                if ()
+//                {
+//                    node.getStyleClass().add("label-irrelevant");
+//
+//                }
             }
-            node.getStyleClass().add("label-header");
         }
     }
 }

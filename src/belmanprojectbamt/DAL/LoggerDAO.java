@@ -36,11 +36,12 @@ public class LoggerDAO
             Date curDate = cal.getTime();
             java.sql.Date sqlDate = new java.sql.Date(cal.getTimeInMillis());
             
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO Log VALUES (?, ?, ?, ?)");
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO Log VALUES (?, ?, ?, ?, ?)");
             pstmt.setInt(1, pOrder.getId());
-            pstmt.setString(2, logMessage);
-            pstmt.setString(3, dTask.getDepartmentName());
-            pstmt.setDate(4, sqlDate);
+            pstmt.setString(2, pOrder.getOrderNumber());
+            pstmt.setString(3, logMessage);
+            pstmt.setString(4, dTask.getDepartmentName());
+            pstmt.setDate(5, sqlDate);
             pstmt.execute();    
         } 
         catch (Exception e)

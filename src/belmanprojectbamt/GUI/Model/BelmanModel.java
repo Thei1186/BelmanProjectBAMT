@@ -35,8 +35,7 @@ public class BelmanModel
         bModelInstance = null;
         IFacade bFacade = new Facade();
         bManager = new BelmanManager(bFacade);
-
-        productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
+        
     }
 
     public static BelmanModel getInstance() throws Exception
@@ -56,9 +55,11 @@ public class BelmanModel
     /**
      *
      * @return
+     * @throws java.lang.Exception
      */
-    public ObservableList<ProductionOrder> getProductionOrder()
+    public ObservableList<ProductionOrder> getProductionOrders() throws Exception
     {
+        productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
         return productionOrders;
     }
 
