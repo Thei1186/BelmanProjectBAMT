@@ -19,11 +19,13 @@ public class Facade implements IFacade
 
     ConfigReader cReader;
     DatabaseDAO dDAO;
+    LoggerDAO lDAO;
     
     public Facade() throws IOException
     {
         dDAO = new DatabaseDAO();
         cReader = new ConfigReader();
+        lDAO = new LoggerDAO();
     }
     
     @Override
@@ -48,6 +50,12 @@ public class Facade implements IFacade
     public int getOffSet()
     {
         return cReader.getOffSet();
+    }
+
+    @Override
+    public void updateLog(ProductionOrder pOrder, DepartmentTask dTask, String logMessage)
+    {
+        lDAO.updateLog(pOrder, dTask, logMessage);
     }
     
 }

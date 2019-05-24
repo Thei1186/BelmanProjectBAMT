@@ -65,4 +65,10 @@ public class BelmanManager implements LogicInterface
 
         return elapsedTime;
     }
+
+    @Override
+    public void updateLog(ProductionOrder pOrder, DepartmentTask dTask, String logMessage)
+    {
+        belDao.updateLog(pOrder, dTask, logMessage);
+    }
 }

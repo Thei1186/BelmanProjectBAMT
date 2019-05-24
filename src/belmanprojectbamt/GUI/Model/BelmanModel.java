@@ -27,26 +27,19 @@ public class BelmanModel
 
     private static BelmanModel bModelInstance;
     private LogicInterface bManager;
-    
+
     private ObservableList<ProductionOrder> productionOrders;
 
-
-    private BelmanModel() throws IOException
+    private BelmanModel() throws Exception
     {
         bModelInstance = null;
         IFacade bFacade = new Facade();
         bManager = new BelmanManager(bFacade);
-        
-        try {
-            productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
 
-        } catch (Exception ex) {
-            Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
+        productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
     }
 
-    public static BelmanModel getInstance() throws IOException
+    public static BelmanModel getInstance() throws Exception
     {
         if (bModelInstance == null)
         {
@@ -55,35 +48,35 @@ public class BelmanModel
         return bModelInstance;
     }
 
+    public void updateLog(ProductionOrder pOrder, DepartmentTask dTask, String logMessage)
+    {
+        bManager.updateLog(pOrder, dTask, logMessage);
+    }
+
     /**
      *
      * @return
      */
     public ObservableList<ProductionOrder> getProductionOrder()
     {
-        try {
-            return productionOrders;
-        } catch (Exception ex) {
-            Logger.getLogger(BelmanModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return productionOrders;
     }
-    
+
     public void setTaskAsDone(DepartmentTask task)
     {
         bManager.setTaskAsDone(task);
     }
- 
+
     public String getDepartmentName()
     {
         return bManager.getDepartmentName();
     }
-  
+
     public int getOffSet()
     {
         return bManager.getOffSet();
     }
-    
+
     public double getProgressBarData(Date startDate, Date endDate)
     {
         return bManager.getProgressBarData(startDate, endDate);

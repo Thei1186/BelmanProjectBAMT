@@ -27,7 +27,7 @@ public class BelmanProjectBAMT extends Application
         Scene scene = new Scene(root);
         scene.getStylesheets().add("CascadeStyleSheet.css");
         stage.setScene(scene);
-        stage.setFullScreen(true);
+//        stage.setFullScreen(true);
         stage.getIcons().add(new Image("logo.png"));
         stage.show();
     }

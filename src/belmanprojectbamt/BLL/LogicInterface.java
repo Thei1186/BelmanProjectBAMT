@@ -25,6 +25,14 @@ public interface LogicInterface
     
     /**
      *
+     * @param pOrder
+     * @param dTask
+     * @param logMessage
+     */
+    public void updateLog(ProductionOrder pOrder, DepartmentTask dTask, String logMessage);
+    
+    /**
+     *
      * @param task
      */
     public void setTaskAsDone(DepartmentTask task);

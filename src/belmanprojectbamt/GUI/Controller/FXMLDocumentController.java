@@ -47,7 +47,7 @@ public class FXMLDocumentController implements Initializable
 
     private final BelmanModel belModelInstance;
 
-    public FXMLDocumentController() throws IOException
+    public FXMLDocumentController() throws Exception
     {
         this.belModelInstance = BelmanModel.getInstance();
     }
@@ -66,13 +66,13 @@ public class FXMLDocumentController implements Initializable
         try
         {
             pFactory = new PostItFactory(flowPane, productionOrders);
-        } catch (IOException ex)
+        } catch (Exception ex)
         {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        handlePostIts();
 
+        handlePostIts();
+//        updateGUI();
         flowPane.setVgap(6);
         flowPane.setHgap(6);
         flowPane.setOrientation(Orientation.VERTICAL);
@@ -95,6 +95,19 @@ public class FXMLDocumentController implements Initializable
             };
             executor.scheduleWithFixedDelay(task, 0, 200, TimeUnit.MILLISECONDS);
         }
+    }
+
+    public void updateGUI()
+    {
+        ScheduledExecutorService executor1 = Executors.newScheduledThreadPool(1);
+        Runnable task = () ->
+        {
+            Platform.runLater(() ->
+        {        
+            flowPane.getChildren().clear();
+        });
+        };
+        executor1.scheduleWithFixedDelay(task, 0, 3, TimeUnit.SECONDS);
     }
 
     public void generatePostIt()
