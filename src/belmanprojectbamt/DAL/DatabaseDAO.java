@@ -35,7 +35,7 @@ public class DatabaseDAO
 
         try (Connection con = ds.getConnection())
         {
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM ProductionOrder");
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM ProductionOrder ORDER BY DeliveryDate");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next())
