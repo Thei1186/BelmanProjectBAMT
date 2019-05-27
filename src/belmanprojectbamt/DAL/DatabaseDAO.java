@@ -78,7 +78,8 @@ public class DatabaseDAO
     {
         try (Connection con = ds.getConnection())
         {
-            PreparedStatement pstmt = con.prepareStatement("UPDATE DepartmentTask Set FinishedTask = (?) WHERE ProdId = (?) AND DepartmentName = (?)");
+            PreparedStatement pstmt = con.prepareStatement("UPDATE DepartmentTask Set FinishedTask = (?)"
+                    + " WHERE ProdId = (?) AND DepartmentName = (?)");
             pstmt.setBoolean(1, true);
             pstmt.setInt(2, task.getProdId());
             pstmt.setString(3, task.getDepartmentName());
@@ -87,7 +88,7 @@ public class DatabaseDAO
         }
         catch (Exception e)
         {
-
+          
         }
     }
 }
