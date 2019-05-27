@@ -5,16 +5,11 @@
  */
 package belmanprojectbamt.GUI.Controller;
 
-import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
-import belmanprojectbamt.DAL.ConfigReader;
 import belmanprojectbamt.GUI.Model.BelmanModel;
 import belmanprojectbamt.GUI.Model.PostItFactory;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -23,11 +18,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
@@ -41,18 +36,21 @@ public class FXMLDocumentController implements Initializable
 
     @FXML
     private FlowPane flowPane;
-    @FXML
-    private AnchorPane ancPane;
 
     private PostItFactory pFactory;
 
     private ObservableList<ProductionOrder> productionOrders;
 
     private final BelmanModel belModelInstance;
+    
+    private String currentDept;
+    @FXML
+    private AnchorPane ancBackground;
 
     public FXMLDocumentController() throws Exception
     {
         this.belModelInstance = BelmanModel.getInstance();
+        this.currentDept = belModelInstance.getDepartmentName();
     }
 
     /**
@@ -78,6 +76,7 @@ public class FXMLDocumentController implements Initializable
             }
         }
 
+        departmentNameLabel();
         flowPane.setVgap(6);
         flowPane.setHgap(6);
         flowPane.setOrientation(Orientation.VERTICAL);
@@ -145,6 +144,18 @@ public class FXMLDocumentController implements Initializable
         {
             pFactory.createPostIt();
         });
+    }
+    
+    public void departmentNameLabel()
+    {
+        Label deptNamelabel = new Label();
+        
+        deptNamelabel.setLayoutX(900);
+        deptNamelabel.setLayoutY(50);
+        deptNamelabel.setText(currentDept);
+        deptNamelabel.getStyleClass().add("label-dept-name");
+
+        ancBackground.getChildren().add(deptNamelabel);
     }
 
 }
