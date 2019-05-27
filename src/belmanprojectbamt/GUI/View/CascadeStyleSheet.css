@@ -42,22 +42,22 @@ and open the template in the editor.
     -fx-font-weight: bold;
 }
 
-.label-dep .label-done
+.label-done
 {
     -fx-background-color: green;
 }
 
-.label-dep .label-ongoing
+.label-ongoing
 {
     -fx-background-color: #ffcc00;
 }
 
-.label-dep .label-late
+.label-late
 {
     -fx-background-color: red;
 }
 
-.label-dep .label-irrelevant
+.label-irrelevant
 {
     -fx-background-color: gray;
 }

@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -289,7 +288,14 @@ public class PostItFactory
         dep5.setUserData("Bertel");
         dep6.setUserData("Maler");
         dep7.setUserData("Forsendelse");
-
+        dep1.getStyleClass().add(getTaskStatusStyle(dep1));
+        dep2.getStyleClass().add(getTaskStatusStyle(dep2));
+        dep3.getStyleClass().add(getTaskStatusStyle(dep3));
+        dep4.getStyleClass().add(getTaskStatusStyle(dep4));
+        dep5.getStyleClass().add(getTaskStatusStyle(dep5));
+        dep6.getStyleClass().add(getTaskStatusStyle(dep6));
+        dep7.getStyleClass().add(getTaskStatusStyle(dep7));
+        
         dep1.setLayoutX(505);
         dep1.setLayoutY(20);
         dep1.setPadding(new Insets(20));
@@ -322,37 +328,28 @@ public class PostItFactory
         hbox.getChildren().addAll(dep1, dep2, dep3, dep4, dep5, dep6, dep7);
 
         ancPostIt.getChildren().add(hbox);
-        setDeptStatus(hbox);
     }
-
-    private void setDeptStatus(HBox hbox)
+    
+    private String getTaskStatusStyle(Label department)
     {
-        List<Node> nodes = hbox.getChildren();
         List<DepartmentTask> dTasks = productionOrders.get(index).getDeptTasks();
         for (DepartmentTask dTask : dTasks)
         {
-            for (Node node : nodes)
-            {
-                if (dTask.isFinishedTask() && dTask.getDepartmentName().toLowerCase().equals(node.getUserData().toString().toLowerCase()))
+         if (dTask.isFinishedTask() && dTask.getDepartmentName().toLowerCase().equals(department.getUserData().toString().toLowerCase()))
                 {
-                    node.getStyleClass().add("label-done");
+                    return "label-done";
                 } 
                 else if (!dTask.isFinishedTask() && dTask.getEndDate().getTime() < System.currentTimeMillis()
-                        && dTask.getDepartmentName().toLowerCase().equals(node.getUserData().toString().toLowerCase()))
+                        && dTask.getDepartmentName().toLowerCase().equals(department.getUserData().toString().toLowerCase()))
                 {
-                    node.getStyleClass().add("label-late");
+                    return "label-late";
                 }
                 else if (isStartDateReached() && !dTask.isFinishedTask()
-                        && dTask.getDepartmentName().toLowerCase().equals(node.getUserData().toString().toLowerCase()))
+                        && dTask.getDepartmentName().toLowerCase().equals(department.getUserData().toString().toLowerCase()))
                 {
-                    node.getStyleClass().add("label-ongoing");
-                }
-//                if ()
-//                {
-//                    node.getStyleClass().add("label-irrelevant");
-//
-//                }
-            }
-        }
+                   return "label-ongoing";
+                }             
+    }
+           return "label-irrelevant";
     }
 }
