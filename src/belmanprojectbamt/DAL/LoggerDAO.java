@@ -33,7 +33,6 @@ public class LoggerDAO
         try (Connection con = ds.getConnection())
         {
             Calendar cal = Calendar.getInstance();
-            Date curDate = cal.getTime();
             java.sql.Date sqlDate = new java.sql.Date(cal.getTimeInMillis());
             
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO Log VALUES (?, ?, ?, ?, ?)");
