@@ -350,11 +350,28 @@ public class PostItFactory
                     return "label-late";
                 }
                 else if (isStartDateReached() && !dTask.isFinishedTask()
-                        && dTask.getDepartmentName().toLowerCase().equals(department.getUserData().toString().toLowerCase()))
+                        && dTask.getDepartmentName().toLowerCase().equals(department.getUserData().toString().toLowerCase())
+                        && isPreviousDepartmentDone())
                 {
                    return "label-ongoing";
-                }             
+                }
+                else if (!isStartDateReached())
+            {
+                return "";
+            }
     }
            return "label-irrelevant";
+    }
+    
+    private boolean isPreviousDepartmentDone()
+    {
+        if (departmentIndex() > 0)
+        {
+            if (productionOrders.get(index).getDeptTasks().get(departmentIndex() - 1).isFinishedTask())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
