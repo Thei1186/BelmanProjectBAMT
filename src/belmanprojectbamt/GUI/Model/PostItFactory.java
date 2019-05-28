@@ -24,6 +24,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Window;
 
 /**
  *
@@ -239,14 +240,18 @@ public class PostItFactory
         doneButton.setPrefSize(80, 20);
         doneButton.setOnMouseClicked(event ->
         {
+            Node source = (Node) event.getSource();
+            Window theStage = source.getScene().getWindow();
+            
             List<DepartmentTask> dTasks = productionOrders.get(postItIndex).getDeptTasks();
+            
             for (DepartmentTask dTask : dTasks)
             {
                 if (dTask.getDepartmentName().equals(currentDept))
                 {
                     Alert iAlert = new Alert(Alert.AlertType.CONFIRMATION, productionOrders.get(postItIndex).getOrderNumber()
                             + " is set to done for department: " + dTask.getDepartmentName());
-
+                    iAlert.initOwner(theStage);
                     Optional<ButtonType> result = iAlert.showAndWait();
 
                     if (result.get() == ButtonType.OK)
