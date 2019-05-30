@@ -81,7 +81,12 @@ public class FXMLDocumentController implements Initializable
         flowPane.setHgap(6);
         flowPane.setOrientation(Orientation.VERTICAL);
     }
-
+    
+    /**
+     * Checks for changes to the list of orders and resets the post-its
+     * @return
+     * @throws Exception 
+     */
     public ObservableList<ProductionOrder> getProductionOrders() throws Exception
     {
         ObservableList<ProductionOrder> tempList = belModelInstance.getProductionOrders();
@@ -98,7 +103,9 @@ public class FXMLDocumentController implements Initializable
             return null;
         }
     }
-
+    /**
+     * Creates a threadpool and an executor to run getProductionOrders() every 5 seconds.
+     */
     private void handleGetProductionOrders()
     {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -118,7 +125,11 @@ public class FXMLDocumentController implements Initializable
         };
         executor.scheduleWithFixedDelay(task, 0, 5, TimeUnit.SECONDS);
     }
-
+    
+    /**
+     * Creates and handles a thread that runs the generatePostIt method
+     * repeatedly. 
+     */
     public void handlePostIts()
     {
         if (productionOrders.size() > 0 && productionOrders != null)
@@ -137,7 +148,10 @@ public class FXMLDocumentController implements Initializable
             executor.scheduleWithFixedDelay(task, 0, 200, TimeUnit.MILLISECONDS);
         }
     }
-
+    /**
+     * Calls the factory's createPostIt() method
+     * This method is called by the handlePostIts() method
+     */
     public void generatePostIt()
     {
         Platform.runLater(() ->
@@ -146,6 +160,9 @@ public class FXMLDocumentController implements Initializable
         });
     }
     
+    /**
+     * Makes a label that shows the name of the current department
+     */
     public void departmentNameLabel()
     {
         Label deptNamelabel = new Label();
