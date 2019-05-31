@@ -53,7 +53,11 @@ public class PostItFactory
         this.currentDept = belModelInstance.getDepartmentName();
         this.timeOffset = belModelInstance.getOffSet();
     }
-
+    
+    /**
+     * Calls all the relevant methods for creating a post-it. This method is called from 
+     * the controller.
+     */
     public void createPostIt()
     {
         if (checkIfPostItReady())
@@ -67,12 +71,10 @@ public class PostItFactory
             createHBox();
         }
         index++;
-
-//        return ancPostIt;
     }
 
     /**
-     * Gets Department tasks from production order
+     * Gets a Department task from a production order
      *
      * @return DepartmentTask
      */
@@ -80,7 +82,11 @@ public class PostItFactory
     {
         return productionOrders.get(index).getDeptTasks().get(departmentIndex());
     }
-
+    
+    /**
+     * Checks if the current date is past the start date for a department task
+     * @return 
+     */
     private boolean isStartDateReached()
     {
         Calendar cal = Calendar.getInstance();
@@ -89,7 +95,11 @@ public class PostItFactory
 
         return curDateMilli >= (getDeptTask().getStartDate().getTime() - timeOffsetInMilli);
     }
-
+    
+    /**
+     * Checks if the current date is past the end date for a department task
+     * @return 
+     */
     private boolean isEndDateReached()
     {
         Calendar cal = Calendar.getInstance();
@@ -97,7 +107,11 @@ public class PostItFactory
 
         return curDateMilli > getDeptTask().getEndDate().getTime();
     }
-
+    
+    /**
+     * Checks if the post-it is ready to be shown
+     * @return 
+     */
     private boolean checkIfPostItReady()
     {
         return isStartDateReached()
@@ -163,7 +177,11 @@ public class PostItFactory
 
         ancPostIt.getChildren().addAll(customerName, delDate, orderNr, startDate, endDate);
     }
-
+    
+    /**
+     * Gets a list of department tasks from a production order and returns an index
+     * @return 
+     */
     private int departmentIndex()
     {
         int departmentIndex = 0;
@@ -334,7 +352,11 @@ public class PostItFactory
 
         ancPostIt.getChildren().add(hbox);
     }
-    
+    /**
+     * Handles colouring the department labels
+     * @param department
+     * @return 
+     */
     private String getTaskStatusStyle(Label department)
     {
         List<DepartmentTask> dTasks = productionOrders.get(index).getDeptTasks();
@@ -359,10 +381,14 @@ public class PostItFactory
             {
                 return "";
             }
-    }
+        }
            return "label-irrelevant";
     }
     
+    /**
+     * Checks if the previous department is done and returns true if it is.
+     * @return 
+     */
     private boolean isPreviousDepartmentDone()
     {
         if (departmentIndex() > 0)

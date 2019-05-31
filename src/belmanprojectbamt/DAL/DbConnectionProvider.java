@@ -22,7 +22,13 @@ public class DbConnectionProvider
 
     private static final String PROP_FILE = "Database_Settings.txt";
     private final SQLServerDataSource ds;
-
+    
+    /**
+     * Reads database related properties from a file and sets them in a
+     * SQLServerDataSource
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public DbConnectionProvider() throws FileNotFoundException, IOException
     {
         Properties databaseProperties = new Properties();
@@ -34,7 +40,11 @@ public class DbConnectionProvider
         ds.setPassword(databaseProperties.getProperty("Password"));
     }
 
-    
+    /**
+     * Connects with the datasource object
+     * @return
+     * @throws SQLServerException 
+     */
     public Connection getConnection() throws SQLServerException
     {
         return ds.getConnection();

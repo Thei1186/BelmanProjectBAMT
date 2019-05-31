@@ -19,7 +19,12 @@ public class DateFormatter
     {
        
     }
-
+    
+    /**
+     * Takes a date, formats it and returns it as a string
+     * @param dateToFormat
+     * @return 
+     */
     public String formatDate(Date dateToFormat)
     {
         DateFormat df = new SimpleDateFormat("dd MMM yyyy");

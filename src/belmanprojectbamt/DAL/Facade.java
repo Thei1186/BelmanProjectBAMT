@@ -28,30 +28,53 @@ public class Facade implements IFacade
         lDAO = new LoggerDAO();
     }
     
+    /**
+     * Retrieves a list of production orders
+     * @return
+     * @throws Exception 
+     */
     @Override
     public List<ProductionOrder> getProductionOrder() throws Exception
     {
         return dDAO.getProductionOrders();
     }
     
+    /**
+     * Sets a department task as done
+     * @param task 
+     */
     @Override
     public void setTaskAsDone(DepartmentTask task)
     {
         dDAO.setTaskAsDone(task);
     }
-
+    
+    /**
+     * Gets the department name
+     * @return 
+     */
     @Override
     public String getDepartmentName()
     {
         return cReader.getDepartmentName();
     }
-
+    
+    /**
+     * Gets the time offset 
+     * @return 
+     */
     @Override
     public int getOffSet()
     {
         return cReader.getOffSet();
     }
-
+    
+    /**
+     * Tries to update the log in the database
+     * @param pOrder
+     * @param dTask
+     * @param logMessage 
+     */
     @Override
     public void updateLog(ProductionOrder pOrder, DepartmentTask dTask, String logMessage)
     {

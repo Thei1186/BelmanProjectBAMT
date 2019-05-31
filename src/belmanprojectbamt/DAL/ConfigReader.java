@@ -17,20 +17,29 @@ import java.util.Properties;
 public class ConfigReader
 {
 
-    private static final String PROP_FILE = "Config.txt";
-    private Properties configProp;
+    private static final String PROP_FILE = "Config.txt"; //defines the file to read
+    private Properties configProp; 
 
     public ConfigReader() throws FileNotFoundException, IOException
     {
         configProp = new Properties();
         configProp.load(new FileInputStream(PROP_FILE));
     }
-
+    
+    /**
+     * Gets department name from the config file
+     * @return 
+     */
     public String getDepartmentName()
     {
         return configProp.getProperty("Department");
     }
-
+    
+    /**
+     * Gets time offset from the config file.
+     * Defaults as 0 in case no offset is set within the file
+     * @return 
+     */
     public int getOffSet()
     {
         if (configProp.getProperty("TimeOffset").equals(""))

@@ -29,7 +29,11 @@ public class BelmanModel
     private LogicInterface bManager;
 
     private ObservableList<ProductionOrder> productionOrders;
-
+    
+    /**
+     * Singleton constructor
+     * @throws Exception 
+     */
     private BelmanModel() throws Exception
     {
         bModelInstance = null;
@@ -37,7 +41,13 @@ public class BelmanModel
         bManager = new BelmanManager(bFacade);
         
     }
-
+    
+    /**
+     * The model's getInstance method
+     * Returns an instance of the model
+     * @return
+     * @throws Exception 
+     */
     public static BelmanModel getInstance() throws Exception
     {
         if (bModelInstance == null)
@@ -46,14 +56,21 @@ public class BelmanModel
         }
         return bModelInstance;
     }
-
+    
+    /**
+     * Updates the log 
+     * @param pOrder
+     * @param dTask
+     * @param logMessage 
+     */
     public void updateLog(ProductionOrder pOrder, DepartmentTask dTask, String logMessage)
     {
         bManager.updateLog(pOrder, dTask, logMessage);
     }
 
     /**
-     *
+     * Takes an Array list of production orders from the Manager and makes it into an 
+     * observable array list.
      * @return
      * @throws java.lang.Exception
      */
@@ -62,22 +79,40 @@ public class BelmanModel
         productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
         return productionOrders;
     }
-
+    
+    /**
+     * Calls the setTaskAsDone method on the bManager instance
+     * @param task 
+     */
     public void setTaskAsDone(DepartmentTask task)
     {
         bManager.setTaskAsDone(task);
     }
-
+    
+    /**
+     * Gets the department name from the Manager
+     * @return 
+     */
     public String getDepartmentName()
     {
         return bManager.getDepartmentName();
     }
-
+    
+    /**
+     * Gets the time offset from the Manager
+     * @return 
+     */
     public int getOffSet()
     {
         return bManager.getOffSet();
     }
-
+    
+    /**
+     * Gets the progress bar data calcuted in the manager
+     * @param startDate
+     * @param endDate
+     * @return 
+     */
     public double getProgressBarData(Date startDate, Date endDate)
     {
         return bManager.getProgressBarData(startDate, endDate);

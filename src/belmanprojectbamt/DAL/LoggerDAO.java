@@ -22,12 +22,18 @@ import java.util.logging.Logger;
 public class LoggerDAO
 {
     DbConnectionProvider ds;
-
+    
     public LoggerDAO() throws IOException
     {
         ds = new DbConnectionProvider();
     }
     
+    /**
+     * Tries to update the log in the database
+     * @param pOrder
+     * @param dTask
+     * @param logMessage 
+     */
     public void updateLog(ProductionOrder pOrder, DepartmentTask dTask, String logMessage)
     {
         try (Connection con = ds.getConnection())

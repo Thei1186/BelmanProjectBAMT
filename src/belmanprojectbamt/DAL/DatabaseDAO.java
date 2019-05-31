@@ -28,7 +28,11 @@ public class DatabaseDAO
     {
         ds = new DbConnectionProvider();
     }
-
+    
+    /**
+     * Gets production orders and department tasks from the database
+     * @return 
+     */
     public List<ProductionOrder> getProductionOrders()
     {
         List<ProductionOrder> productionOrders = new ArrayList<>();
@@ -68,12 +72,16 @@ public class DatabaseDAO
         } 
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
 
         return productionOrders;
     }
-
+    
+    /**
+     * Updates a department task's FinishedTask value to true in the database
+     * @param task 
+     */
     public void setTaskAsDone(DepartmentTask task)
     {
         try (Connection con = ds.getConnection())
@@ -88,7 +96,7 @@ public class DatabaseDAO
         }
         catch (Exception e)
         {
-          
+          e.printStackTrace();
         }
     }
 }

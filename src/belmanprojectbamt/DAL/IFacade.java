@@ -17,31 +17,31 @@ public interface IFacade
 {
 
     /**
-     *
+     * Retrieves a list of production orders
      * @return @throws java.lang.Exception
      */
     public List<ProductionOrder> getProductionOrder() throws Exception;
 
     /**
-     *
+     * Sets a department task as done
      * @param task
      */
     public void setTaskAsDone(DepartmentTask task);
 
     /**
-     *
+     * Gets the department name
      * @return
      */
     public String getDepartmentName();
 
     /**
-     *
+     * Gets the time offset 
      * @return
      */
     public int getOffSet();
 
     /**
-     *
+     * Tries to update the log in the database
      * @param pOrder
      * @param dTask
      * @param logMessage
