@@ -34,8 +34,8 @@ public class BelmanManagerTest
     }
 
     /**
-     * Test of isStartDateReached method, of class BelmanManager expects a true result
-     * to ensure that it can detect when start date is reached.
+     * Test of isStartDateReached method, of class BelmanManager expects a true
+     * result to ensure that it can detect when start date is reached.
      */
     @Test
     public void testIsStartDateReached()
@@ -50,12 +50,12 @@ public class BelmanManagerTest
 
         boolean startDateReached = bManager.isStartDateReached(dTask);
 
-        assertTrue(startDateReached);
+        assertTrue("StartDateReached returned false, but it should be true", startDateReached);
     }
 
     /**
-     * Test of isStartDateReached method, of class BelmanManager expects a false result
-     * to ensure that it can detect when start date is not yet reached.
+     * Test of isStartDateReached method, of class BelmanManager expects a false
+     * result to ensure that it can detect when start date is not yet reached.
      */
     @Test
     public void testIsStartDateNotReached()
@@ -74,8 +74,8 @@ public class BelmanManagerTest
     }
 
     /**
-     * Test of isEndDateReached method, of class BelmanManager expects a true result
-     * to ensure that it actually detects when end date is reached
+     * Test of isEndDateReached method, of class BelmanManager expects a true
+     * result to ensure that it actually detects when end date is reached
      */
     @Test
     public void testIsEndDateReached()
@@ -94,8 +94,8 @@ public class BelmanManagerTest
     }
 
     /**
-     * Test of isEndDateReached method, of class BelmanManager expects a false result
-     * to ensure that it actually detects when end date is not reached .
+     * Test of isEndDateReached method, of class BelmanManager expects a false
+     * result to ensure that it actually detects when end date is not reached .
      */
     @Test
     public void testIsEndDateNotReached()
