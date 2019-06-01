@@ -8,11 +8,9 @@ package belmanprojectbamt.GUI.Model;
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -82,39 +80,14 @@ public class PostItFactory
     {
         return productionOrders.get(index).getDeptTasks().get(departmentIndex());
     }
-    
-    /**
-     * Checks if the current date is past the start date for a department task
-     * @return 
-     */
-    private boolean isStartDateReached()
-    {
-        Calendar cal = Calendar.getInstance();
-        Long timeOffsetInMilli = TimeUnit.DAYS.toMillis(timeOffset);
-        Long curDateMilli = cal.getTimeInMillis();
 
-        return curDateMilli >= (getDeptTask().getStartDate().getTime() - timeOffsetInMilli);
-    }
-    
-    /**
-     * Checks if the current date is past the end date for a department task
-     * @return 
-     */
-    private boolean isEndDateReached()
-    {
-        Calendar cal = Calendar.getInstance();
-        Long curDateMilli = cal.getTimeInMillis();
-
-        return curDateMilli > getDeptTask().getEndDate().getTime();
-    }
-    
     /**
      * Checks if the post-it is ready to be shown
      * @return 
      */
     private boolean checkIfPostItReady()
     {
-        return isStartDateReached()
+        return belModelInstance.isStartDateReached(getDeptTask())
                 && !getDeptTask().isFinishedTask()
                 && getDeptTask().getDepartmentName().toLowerCase().equals(currentDept.toLowerCase());
     }
@@ -366,18 +339,18 @@ public class PostItFactory
                 {
                     return "label-done";
                 } 
-                else if (!dTask.isFinishedTask() && dTask.getEndDate().getTime() < System.currentTimeMillis()
+                else if (!dTask.isFinishedTask() && belModelInstance.isEndDateReached(dTask)
                         && dTask.getDepartmentName().toLowerCase().equals(department.getUserData().toString().toLowerCase()))
                 {
                     return "label-late";
                 }
-                else if (isStartDateReached() && !dTask.isFinishedTask()
+                else if (belModelInstance.isStartDateReached(dTask) && !dTask.isFinishedTask()
                         && dTask.getDepartmentName().toLowerCase().equals(department.getUserData().toString().toLowerCase())
                         && isPreviousDepartmentDone())
                 {
                    return "label-ongoing";
                 }
-                else if (!isStartDateReached())
+                else if (!belModelInstance.isStartDateReached(dTask))
             {
                 return "";
             }

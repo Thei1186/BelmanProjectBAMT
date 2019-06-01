@@ -11,10 +11,7 @@ import belmanprojectbamt.BLL.BelmanManager;
 import belmanprojectbamt.BLL.LogicInterface;
 import belmanprojectbamt.DAL.Facade;
 import belmanprojectbamt.DAL.IFacade;
-import java.io.IOException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -24,15 +21,16 @@ import javafx.collections.ObservableList;
  */
 public class BelmanModel
 {
-
+    
     private static BelmanModel bModelInstance;
     private LogicInterface bManager;
-
-    private ObservableList<ProductionOrder> productionOrders;
     
+    private ObservableList<ProductionOrder> productionOrders;
+
     /**
      * Singleton constructor
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     private BelmanModel() throws Exception
     {
@@ -41,12 +39,12 @@ public class BelmanModel
         bManager = new BelmanManager(bFacade);
         
     }
-    
+
     /**
-     * The model's getInstance method
-     * Returns an instance of the model
+     * The model's getInstance method returns an instance of the model
+     *
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     public static BelmanModel getInstance() throws Exception
     {
@@ -56,12 +54,13 @@ public class BelmanModel
         }
         return bModelInstance;
     }
-    
+
     /**
-     * Updates the log 
+     * Updates the log
+     *
      * @param pOrder
      * @param dTask
-     * @param logMessage 
+     * @param logMessage
      */
     public void updateLog(ProductionOrder pOrder, DepartmentTask dTask, String logMessage)
     {
@@ -69,8 +68,9 @@ public class BelmanModel
     }
 
     /**
-     * Takes an Array list of production orders from the Manager and makes it into an 
-     * observable array list.
+     * Takes an Array list of production orders from the Manager and makes it
+     * into an observable array list.
+     *
      * @return
      * @throws java.lang.Exception
      */
@@ -79,43 +79,68 @@ public class BelmanModel
         productionOrders = FXCollections.observableArrayList(bManager.getProductionOrder());
         return productionOrders;
     }
-    
+
     /**
      * Calls the setTaskAsDone method on the bManager instance
-     * @param task 
+     *
+     * @param task
      */
     public void setTaskAsDone(DepartmentTask task)
     {
         bManager.setTaskAsDone(task);
     }
-    
+
     /**
      * Gets the department name from the Manager
-     * @return 
+     *
+     * @return
      */
     public String getDepartmentName()
     {
         return bManager.getDepartmentName();
     }
-    
+
     /**
      * Gets the time offset from the Manager
-     * @return 
+     *
+     * @return
      */
     public int getOffSet()
     {
         return bManager.getOffSet();
     }
-    
+
     /**
      * Gets the progress bar data calcuted in the manager
+     *
      * @param startDate
      * @param endDate
-     * @return 
+     * @return
      */
     public double getProgressBarData(Date startDate, Date endDate)
     {
         return bManager.getProgressBarData(startDate, endDate);
     }
 
+    /**
+     * Checks if the current date is past the end date for a department task
+     *
+     * @param task
+     * @return
+     */
+    public boolean isEndDateReached(DepartmentTask task)
+    {
+        return bManager.isEndDateReached(task);
+    }
+
+    /**
+     * Checks if the current date is past the start date for a department task
+     *
+     * @param task
+     * @return
+     */
+    public boolean isStartDateReached(DepartmentTask task)
+    {
+        return bManager.isStartDateReached(task);
+    }
 }

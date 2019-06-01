@@ -118,7 +118,7 @@ public class FXMLDocumentController implements Initializable
                     getProductionOrders();
                 } catch (Exception ex)
                 {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, "Something went wrong when getting the production orders", ex);
                 }
             });
 
