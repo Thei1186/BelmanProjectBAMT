@@ -31,7 +31,7 @@ import javafx.scene.layout.FlowPane;
  *
  * @author asvor
  */
-public class FXMLDocumentController implements Initializable
+public class BelmanController implements Initializable
 {
 
     @FXML
@@ -47,7 +47,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private AnchorPane ancBackground;
 
-    public FXMLDocumentController() throws Exception
+    public BelmanController() throws Exception
     {
         this.belModelInstance = BelmanModel.getInstance();
         this.currentDept = belModelInstance.getDepartmentName();
@@ -65,14 +65,14 @@ public class FXMLDocumentController implements Initializable
         try
         {
             productionOrders = belModelInstance.getProductionOrders();
+            pFactory = new PostItFactory(flowPane, productionOrders);
             handleGetProductionOrders();
             handlePostIts();
-            pFactory = new PostItFactory(flowPane, productionOrders);
         } catch (Exception ex)
         {
             if (ex instanceof SQLException)
             {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);                
+            Logger.getLogger(BelmanController.class.getName()).log(Level.SEVERE, null, ex);                
             }
         }
 
@@ -90,7 +90,7 @@ public class FXMLDocumentController implements Initializable
     public ObservableList<ProductionOrder> getProductionOrders() throws Exception
     {
         ObservableList<ProductionOrder> tempList = belModelInstance.getProductionOrders();
-        if (tempList.size() != productionOrders.size())
+        if (tempList.size() != productionOrders.size() || pFactory.isStateChanged())
         {
             flowPane.getChildren().clear();
             productionOrders = tempList;
@@ -118,7 +118,7 @@ public class FXMLDocumentController implements Initializable
                     getProductionOrders();
                 } catch (Exception ex)
                 {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, "Something went wrong when getting the production orders", ex);
+                    Logger.getLogger(BelmanController.class.getName()).log(Level.SEVERE, "Something went wrong when getting the production orders", ex);
                 }
             });
 

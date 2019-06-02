@@ -17,6 +17,13 @@ public interface IFacade
 {
 
     /**
+     * Checks if task is set to done in the database
+     * @param task
+     * @return
+     */
+    public boolean checkIfDone(DepartmentTask task);
+    
+    /**
      * Retrieves a list of production orders
      * @return @throws java.lang.Exception
      */

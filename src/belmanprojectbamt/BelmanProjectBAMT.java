@@ -22,7 +22,7 @@ public class BelmanProjectBAMT extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/BelmanView.fxml"));
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("CascadeStyleSheet.css");

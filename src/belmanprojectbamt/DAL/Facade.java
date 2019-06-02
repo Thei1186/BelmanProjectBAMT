@@ -81,4 +81,15 @@ public class Facade implements IFacade
         lDAO.updateLog(pOrder, dTask, logMessage);
     }
     
+    /**
+     * Checks if task is done in the database
+     * @param task
+     * @return 
+     */
+    @Override
+    public boolean checkIfDone(DepartmentTask task)
+    {
+       return dDAO.checkIfDone(task);
+    }
+    
 }

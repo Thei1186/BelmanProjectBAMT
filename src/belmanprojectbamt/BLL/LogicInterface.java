@@ -79,4 +79,11 @@ public interface LogicInterface
      * @return
      */
     public boolean isEndDateReached(DepartmentTask task);
+    
+    /**
+     * Checks if task is done in the database
+     * @param task
+     * @return 
+     */
+    public boolean checkIfDone(DepartmentTask task);
 }

@@ -140,4 +140,15 @@ public class BelmanManager implements LogicInterface
     {
         belDao.updateLog(pOrder, dTask, logMessage);
     }
+    
+    /**
+     * Checks if task is done in the database
+     * @param task
+     * @return 
+     */
+    @Override
+    public boolean checkIfDone(DepartmentTask task)
+    {
+        return belDao.checkIfDone(task);
+    }
 }

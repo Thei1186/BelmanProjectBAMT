@@ -7,10 +7,14 @@ package belmanprojectbamt.GUI.Model;
 
 import belmanprojectbamt.BE.DepartmentTask;
 import belmanprojectbamt.BE.ProductionOrder;
+import belmanprojectbamt.DAL.DatabaseDAO;
+import belmanprojectbamt.GUI.Controller.BelmanController;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -40,9 +44,12 @@ public class PostItFactory
     private String currentDept;
     private int timeOffset;
     private final BelmanModel belModelInstance;
-
+    private boolean stateChanged;
+    private BelmanController bCont;
     public PostItFactory(FlowPane flowPane, List<ProductionOrder> productionOrders) throws IOException, Exception
     {
+        bCont = new BelmanController();
+        stateChanged = false;
         belModelInstance = BelmanModel.getInstance();
         dFormat = new DateFormatter();
         this.flowPane = flowPane;
@@ -216,6 +223,7 @@ public class PostItFactory
 
         flowPane.getChildren().add(ancPostIt);
     }
+    
 
     /**
      * Creates done button with confirmation message.
@@ -247,10 +255,20 @@ public class PostItFactory
 
                     if (result.get() == ButtonType.OK)
                     {
-                        belModelInstance.setTaskAsDone(dTask);
-                        
-                        String logMessage = "DepartmentTask set as done";
-                        belModelInstance.updateLog(productionOrders.get(postItIndex), dTask, logMessage);                        
+                        try {
+                            belModelInstance.setTaskAsDone(dTask);
+                            
+                            String logMessage = "DepartmentTask set as done";
+                            belModelInstance.updateLog(productionOrders.get(postItIndex), dTask, logMessage);
+                            
+                            if (belModelInstance.checkIfDone(dTask))
+                            {
+                                stateChanged = true;
+                                dTask.setFinishedTask(true);
+                            }
+                        } catch (Exception ex) {
+                            Logger.getLogger(PostItFactory.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
             }
@@ -373,4 +391,14 @@ public class PostItFactory
         }
         return false;
     }
+    
+    /**
+     * Checks if a task is set as done in the database
+     * @return 
+     */
+    public boolean isStateChanged()
+    {
+        return stateChanged;
+    }
+    
 }

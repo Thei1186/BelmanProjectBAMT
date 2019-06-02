@@ -41,6 +41,16 @@ public class BelmanModel
     }
 
     /**
+     * Checks if task is done in the database
+     * @param task
+     * @return 
+     */
+    public boolean checkIfDone(DepartmentTask task)
+    {
+        return bManager.checkIfDone(task);
+    }
+    
+    /**
      * The model's getInstance method returns an instance of the model
      *
      * @return
