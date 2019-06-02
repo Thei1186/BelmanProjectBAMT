@@ -22,14 +22,6 @@ public class ProductionOrder
   private List<DepartmentTask> deptTasks;
   
 
-    public ProductionOrder(String orderNumber, String customerName, Date deliveryDate)
-    {
-        this.orderNumber = orderNumber;
-        this.customerName = customerName;
-        this.deliveryDate = deliveryDate;
-        this.deptTasks = new ArrayList<>();
-    }
-
     public ProductionOrder(int id, String orderNumber, String customerName, Date deliveryDate, List<DepartmentTask> deptTasks)
     {
         this.id = id;

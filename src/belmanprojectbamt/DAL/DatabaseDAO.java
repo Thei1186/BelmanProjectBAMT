@@ -110,7 +110,8 @@ public class DatabaseDAO
         boolean taskDone = false;
         try(Connection con = ds.getConnection())
         {
-            PreparedStatement pstmt = con.prepareStatement("SELECT FinishedTask FROM DepartmentTask WHERE ProdID = (?) AND DepartmentName = (?)");
+            PreparedStatement pstmt = con.prepareStatement("SELECT FinishedTask FROM DepartmentTask"
+                    + " WHERE ProdID = (?) AND DepartmentName = (?)");
             pstmt.setInt(1, task.getProdId());
             pstmt.setString(2, task.getDepartmentName());
             
