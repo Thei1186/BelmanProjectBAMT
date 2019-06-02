@@ -90,7 +90,7 @@ public class BelmanManagerTest
 
         boolean endDateReached = bManager.isEndDateReached(dTask);
 
-        assertFalse("endDateReached returned false, but it should be true", endDateReached);
+        assertTrue("endDateReached returned false, but it should be true", endDateReached);
     }
 
     /**
